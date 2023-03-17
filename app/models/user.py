@@ -2,6 +2,14 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+users_movies = db.Table('users_movies',
+                        db.metadata,
+                        db.Column('user_id', db.Integer,
+                                  db.ForeignKey('users.id')),
+                        db.Column('movie_id', db.Integer,
+                                  db.ForeignKey('movies.id'))
+                        )
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -10,9 +18,24 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(40),  unique=True)
+    email = db.Column(db.String(255),  unique=True)
+    hashed_password = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
+    is_manager = db.Column(db.Boolean)
+
+    # 1 prophouse can have many users(as manager)
+    prophouse_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(
+        'prophouses.id')), nullable=True)
+    prophouse = db.relationship('Prophouse', back_populates='users')
+
+    # user and movie is many-to-many relationship
+    movies = db.relationship(
+        'Movie', secondary=users_movies, back_populates='users')
+
+    # 1 user can have many setlists
+    setlists = db.relationship('Setlist', back_populates='user')
 
     @property
     def password(self):
@@ -29,5 +52,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'firstName': self.first_name,
+            'lastName': self.last_name
         }
