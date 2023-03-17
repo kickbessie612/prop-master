@@ -23,6 +23,9 @@ class Prophouse(db.Model):
     # 1 prophouse can have many users(as manager)
     users = db.relationship('User', back_populates='prophouse')
 
+    # 1 prophouse can have many props
+    props = db.relationship('Prop', back_populates='prophouse')
+
     def to_dict(self):
         return {
             'id': self.id,

@@ -11,6 +11,8 @@ class BusinessDay(db.Model):
     weekday = db.Column(db.Integer)
     open_time = db.Column(db.Time, nullable=True)
     close_time = db.Column(db.Time, nullable=True)
+
+    # 1 prophouse can have many business days
     prophouse_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('prophouses.id')))
 
