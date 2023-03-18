@@ -2,6 +2,9 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .movies import seed_movies, undo_movies
 from .users_movies import seed_users_movies, undo_users_movies
+from .prophouses import seed_prophouses, undo_prophouses
+from .forms import seed_forms, undo_forms
+from .business_days import seed_business_days, undo_business_days
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,9 +24,15 @@ def seed():
         undo_users()
         undo_movies()
         undo_users_movies()
+        undo_prophouses()
+        undo_forms()
+        undo_business_days()
     seed_users()
     seed_movies()
     seed_users_movies()
+    seed_prophouses()
+    seed_forms()
+    seed_business_days()
     # Add other seed functions here
 
 
@@ -33,4 +42,7 @@ def undo():
     undo_users()
     undo_movies()
     undo_users_movies()
+    undo_prophouses()
+    undo_forms()
+    undo_business_days()
     # Add other undo functions here

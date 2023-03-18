@@ -1,22 +1,25 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-class Category(db.Model):
-    __tablename__ = 'categories'
+class Form(db.Model):
+    __tablename__ = 'forms'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    parent_id = db.Column(db.Integer, nullable=True)
+    url = db.Column(db.String(255))
 
-    # 1 category can have many props
-    props = db.relationship('Prop', back_populates='category')
+    # 1 prophouse can have many forms
+    prophouse_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('prophouses.id')))
+
+    prophouse = db.relationship('Prophouse', back_populates='forms')
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'parentId': self.parent_id
+            'url': self.url
         }

@@ -9,15 +9,13 @@ def seed_movies():
         name='Kintsugi'
     )
     movie3 = Movie(
-        name=' Everything Everywhere All at Once'
+        name='Everything Everywhere All at Once'
     )
 
     db.session.add(movie1)
     db.session.add(movie2)
     db.session.add(movie3)
     db.session.commit()
-
-    return [movie1, movie2, movie3]
 
 
 def undo_movies():

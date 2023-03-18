@@ -76,6 +76,7 @@ class Prop(db.Model):
             'quantity': self.quantity,
             'weeklyPrice': self.weekly_price,
             'availability': self.availability,
-            'image': self.image
+            'image': self.image,
+            'category': self.category.to_dict()
 
         }
