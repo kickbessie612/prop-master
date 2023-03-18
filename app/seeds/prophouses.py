@@ -35,7 +35,7 @@ def seed_prophouses():
         zipcode='90019',
         phone='323.931.1534',
         logo='https://hpr.com/wp-content/uploads/2021/02/hpr-logo.png',
-        facebook='https://www.facebook.com/thehandproproom/'
+        facebook='https://www.facebook.com/thehandproproom/',
         twitter='https://twitter.com/handproproom',
         instagram='https://www.instagram.com/hprcan/',
         yelp='https://www.yelp.com/biz/the-hand-prop-room-los-angeles'

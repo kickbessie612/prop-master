@@ -5,6 +5,7 @@ from .users_movies import seed_users_movies, undo_users_movies
 from .prophouses import seed_prophouses, undo_prophouses
 from .forms import seed_forms, undo_forms
 from .business_days import seed_business_days, undo_business_days
+from .scenes import seed_scenes, undo_scenes
 
 from app.models.db import db, environment, SCHEMA
 
@@ -27,12 +28,14 @@ def seed():
         undo_prophouses()
         undo_forms()
         undo_business_days()
+        undo_scenes()
     seed_users()
     seed_movies()
     seed_users_movies()
     seed_prophouses()
     seed_forms()
     seed_business_days()
+    seed_scenes()
     # Add other seed functions here
 
 
@@ -45,4 +48,5 @@ def undo():
     undo_prophouses()
     undo_forms()
     undo_business_days()
+    undo_scenes()
     # Add other undo functions here

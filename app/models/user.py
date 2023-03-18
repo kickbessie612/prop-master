@@ -9,6 +9,7 @@ users_movies = db.Table('users_movies',
                                   db.ForeignKey('users.id')),
                         db.Column('movie_id', db.Integer,
                                   db.ForeignKey('movies.id'))
+
                         )
 
 
