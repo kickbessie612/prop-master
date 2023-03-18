@@ -6,7 +6,8 @@ setlists_props = db.Table('setlists_props',
                           db.Column('setlist_id', db.Integer,
                                     db.ForeignKey('setlists.id')),
                           db.Column('prop_id', db.Integer,
-                                    db.ForeignKey('props.id'))
+                                    db.ForeignKey('props.id')),
+                          extend_existing=True
                           )
 
 

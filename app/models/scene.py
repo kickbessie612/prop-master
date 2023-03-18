@@ -6,7 +6,8 @@ scenes_props = db.Table('scenes_props',
                         db.Column('scene_id', db.Integer,
                                   db.ForeignKey('scenes.id')),
                         db.Column('prop_id', db.Integer,
-                                  db.ForeignKey('props.id'))
+                                  db.ForeignKey('props.id')),
+                        extend_existing=True
                         )
 
 
