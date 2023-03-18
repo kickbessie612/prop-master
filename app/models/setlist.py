@@ -1,12 +1,13 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-users_movies = db.Table('users_movies',
-                        db.metadata,
-                        db.Column('user_id', db.Integer,
-                                  db.ForeignKey('users.id')),
-                        db.Column('movie_id', db.Integer,
-                                  db.ForeignKey('movies.id'))
-                        )
+# join table for setlists & props
+setlists_props = db.Table('setlists_props',
+                          db.metadata,
+                          db.Column('setlist_id', db.Integer,
+                                    db.ForeignKey('setlists.id')),
+                          db.Column('prop_id', db.Integer,
+                                    db.ForeignKey('props.id'))
+                          )
 
 
 class Setlist(db.Model):
@@ -22,6 +23,10 @@ class Setlist(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(
         'users.id')))
     user = db.relationship('User', back_populates='setlists')
+
+    # setlist and prop is many-to-many relationship
+    props = db.relationship(
+        'Prop', secondary=setlists_props, back_populates='setlists')
 
     def to_dict(self):
         return {

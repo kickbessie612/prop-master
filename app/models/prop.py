@@ -1,5 +1,24 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+# join table for scenes & props
+scenes_props = db.Table('scenes_props',
+                        db.metadata,
+                        db.Column('scene_id', db.Integer,
+                                  db.ForeignKey('scenes.id')),
+                        db.Column('prop_id', db.Integer,
+                                  db.ForeignKey('props.id'))
+                        )
+
+
+# join table for setlists & props
+setlists_props = db.Table('setlists_props',
+                          db.metadata,
+                          db.Column('setlist_id', db.Integer,
+                                    db.ForeignKey('setlists.id')),
+                          db.Column('prop_id', db.Integer,
+                                    db.ForeignKey('props.id'))
+                          )
+
 
 class Prop(db.Model):
     __tablename__ = 'props'
@@ -27,6 +46,20 @@ class Prop(db.Model):
         add_prefix_for_prod('prophouses.id')))
 
     prophouse = db.relationship('Prophouse', back_populates='props')
+
+    # 1 category can have many props
+    category_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('categories.id')))
+
+    category = db.relationship('Category', back_populates='props')
+
+    # scene and prop is many-to-many relationship
+    scenes = db.relationship(
+        'Scene', secondary=scenes_props, back_populates='props')
+
+    # setlist and prop is many-to-many relationship
+    setlists = db.relationship(
+        'Setlist', secondary=setlists_props, back_populates='props')
 
     def to_dict(self):
         return {

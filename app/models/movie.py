@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+# join table for users & movies
 users_movies = db.Table('users_movies',
                         db.metadata,
                         db.Column('user_id', db.Integer,
@@ -18,8 +19,12 @@ class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
 
+    # user and movie is many-to-many relationship
     users = db.relationship(
         'User', secondary=users_movies, back_populates='movies')
+
+    # 1 movie can have many scenes
+    scenes = db.relationship('Scene', back_populates='movie')
 
     def to_dict(self):
         return {
