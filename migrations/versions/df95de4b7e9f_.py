@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: b2d086b6bf21
+Revision ID: df95de4b7e9f
 Revises: 
-Create Date: 2023-03-18 14:29:45.972684
+Create Date: 2023-03-18 21:18:43.945505
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b2d086b6bf21'
+revision = 'df95de4b7e9f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -76,7 +76,7 @@ def upgrade():
     sa.Column('depth', sa.Integer(), nullable=True),
     sa.Column('height', sa.Integer(), nullable=True),
     sa.Column('style', sa.String(length=255), nullable=True),
-    sa.Column('barcode', sa.Integer(), nullable=True),
+    sa.Column('barcode', sa.String(length=10), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=True),
     sa.Column('weekly_price', sa.Float(), nullable=True),
     sa.Column('availability', sa.Boolean(), nullable=True),
@@ -86,6 +86,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
     sa.ForeignKeyConstraint(['prophouse_id'], ['prophouses.id'], ),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('barcode'),
     sa.UniqueConstraint('name')
     )
     op.create_table('scenes',

@@ -62,7 +62,8 @@ class Prop(db.Model):
     setlists = db.relationship(
         'Setlist', secondary=setlists_props, back_populates='props')
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super(Prop, self).__init__(*args, **kwargs)
         self.barcode = str(random.randint(1000000000, 9999999999))
 
     def to_dict(self):

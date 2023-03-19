@@ -27,7 +27,7 @@ def seed_prophouses():
         logo='https://props.universalstudios.com/Images/universal.png'
     )
     prophouse3 = Prophouse(
-        name='The Warner Bros. Property Department',
+        name='The Hand Prop Room',
         description='For over four decades, The Hand Prop Room has been dedicated to providing the finest merchandise and exceptional service to all of our clients.',
         address='5700 Venice Blvd',
         city='Los Angeles',

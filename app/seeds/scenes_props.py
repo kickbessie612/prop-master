@@ -5,6 +5,8 @@ from sqlalchemy.sql import text
 def seed_scenes_props():
     scenes = Scene.query.all()
     props = Prop.query.all()
+    print(scenes)
+    print(props)
 
     scenes[0].props.extend([props[0]])
     scenes[1].props.extend([props[1]])
