@@ -43,6 +43,10 @@ def seed_categories():
         name='industrial/garage furniture',
         parent_id=1)
 
+    category12 = Category(
+        name='vanity',
+        parent_id=9)
+
     db.session.add(category1)
     db.session.add(category2)
     db.session.add(category3)
@@ -54,6 +58,7 @@ def seed_categories():
     db.session.add(category9)
     db.session.add(category10)
     db.session.add(category11)
+    db.session.add(category12)
     db.session.commit()
 
 

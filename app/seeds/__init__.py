@@ -7,6 +7,10 @@ from .forms import seed_forms, undo_forms
 from .business_days import seed_business_days, undo_business_days
 from .scenes import seed_scenes, undo_scenes
 from .setlists import seed_setlists, undo_setlists
+from .categories import seed_categories, undo_categories
+from .scenes_props import seed_scenes_props, undo_scenes_props
+from .setlists_props import seed_setlists_props, undo_setlists_props
+from .props import seed_props, undo_props
 
 from app.models.db import db, environment, SCHEMA
 
@@ -31,6 +35,10 @@ def seed():
         undo_business_days()
         undo_scenes()
         undo_setlists()
+        undo_categories()
+        undo_scenes_props()
+        undo_setlists_props()
+        undo_props()
     seed_users()
     seed_movies()
     seed_users_movies()
@@ -39,6 +47,10 @@ def seed():
     seed_business_days()
     seed_scenes()
     seed_setlists()
+    seed_categories()
+    seed_scenes_props()
+    seed_setlists_props()
+    seed_props()
     # Add other seed functions here
 
 
@@ -53,4 +65,8 @@ def undo():
     undo_business_days()
     undo_scenes()
     undo_setlists()
+    undo_categories()
+    undo_scenes_props()
+    undo_setlists_props()
+    undo_props()
     # Add other undo functions here

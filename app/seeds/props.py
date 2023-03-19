@@ -90,7 +90,7 @@ def seed_props():
     prop7 = Prop(
         prophouse_id=1,
         category_id=11,
-        name='industrial furniture',
+        name='Industrial Furniture',
         color='silver',
         material='metal',
         description='industrial four tiered shelf unit, galvanized',
@@ -102,6 +102,31 @@ def seed_props():
         availability=True,
         image='https://property.warnerbros.com/Pictures/77/07215977.jpg')
 
+    prop8 = Prop(
+        prophouse_id=1,
+        category_id=4,
+        name='End Table',
+        color='brown and black',
+        material='metal, wood',
+        style='contemporary',
+        depth=24,
+        height=24,
+        quantity=4,
+        weekly_price=140,
+        availability=True,
+        image='https://property.warnerbros.com/Pictures/05/07345105.jpg')
+
+    prop9 = Prop(
+        prophouse_id=3,
+        category_id=12,
+        name='Blow Dryer',
+        color='orange and black',
+        material='plastic',
+        quantity=1,
+        weekly_price=9,
+        availability=True,
+        image='https://property.warnerbros.com/Pictures/39/07369139.jpg')
+
     db.session.add(prop1)
     db.session.add(prop2)
     db.session.add(prop3)
@@ -109,6 +134,8 @@ def seed_props():
     db.session.add(prop5)
     db.session.add(prop6)
     db.session.add(prop7)
+    db.session.add(prop8)
+    db.session.add(prop9)
     db.session.commit()
 
 
