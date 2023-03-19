@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import random
 
 # join table for scenes & props
 scenes_props = db.Table('scenes_props',
@@ -28,14 +29,14 @@ class Prop(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True)
-    description = db.Column(db.String(255))
+    description = db.db.Column(db.String(255), nullable=True)
     color = db.Column(db.String(255), nullable=True)
     material = db.Column(db.String(255), nullable=True)
     length = db.Column(db.Integer, nullable=True)
     depth = db.Column(db.Integer, nullable=True)
     height = db.Column(db.Integer, nullable=True)
     style = db.Column(db.String(255), nullable=True)
-    barcode = db.Column(db.Integer)
+    barcode = db.Column(db.String(10), unique=True)
     quantity = db.Column(db.Integer)
     weekly_price = db.Column(db.Float)
     availability = db.Column(db.Boolean)
@@ -61,6 +62,9 @@ class Prop(db.Model):
     setlists = db.relationship(
         'Setlist', secondary=setlists_props, back_populates='props')
 
+    def __init__(self):
+        self.barcode = str(random.randint(1000000000, 9999999999))
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -78,5 +82,4 @@ class Prop(db.Model):
             'availability': self.availability,
             'image': self.image,
             'category': self.category.to_dict()
-
         }

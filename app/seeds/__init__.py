@@ -6,6 +6,7 @@ from .prophouses import seed_prophouses, undo_prophouses
 from .forms import seed_forms, undo_forms
 from .business_days import seed_business_days, undo_business_days
 from .scenes import seed_scenes, undo_scenes
+from .setlists import seed_setlists, undo_setlists
 
 from app.models.db import db, environment, SCHEMA
 
@@ -29,6 +30,7 @@ def seed():
         undo_forms()
         undo_business_days()
         undo_scenes()
+        undo_setlists()
     seed_users()
     seed_movies()
     seed_users_movies()
@@ -36,6 +38,7 @@ def seed():
     seed_forms()
     seed_business_days()
     seed_scenes()
+    seed_setlists()
     # Add other seed functions here
 
 
@@ -49,4 +52,5 @@ def undo():
     undo_forms()
     undo_business_days()
     undo_scenes()
+    undo_setlists()
     # Add other undo functions here

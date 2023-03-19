@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 
 def seed_scenes():
     scene1 = Scene(
-        name='coach',
+        name='couch',
         movie_id=1,
         image='https://i.imgur.com/WoslQY8.jpeg'
 

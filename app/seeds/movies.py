@@ -4,7 +4,8 @@ from sqlalchemy.sql import text
 
 def seed_movies():
     movie1 = Movie(
-        name='The Rap of China')
+        name='The Rap of China'
+    )
     movie2 = Movie(
         name='Kintsugi'
     )

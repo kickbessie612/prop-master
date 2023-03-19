@@ -7,6 +7,16 @@ class BusinessDay(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
+    days = {
+        0: 'Monday',
+        1: 'Tuesday',
+        2: 'Wednesday',
+        3: 'Thursday',
+        4: 'Friday',
+        5: 'Saturday',
+        6: 'Sunday'
+    }
+
     id = db.Column(db.Integer, primary_key=True)
     weekday = db.Column(db.Integer)
     open_time = db.Column(db.Time, nullable=True)
@@ -24,5 +34,6 @@ class BusinessDay(db.Model):
             'weekday': self.weekday,
             'openTime': self.open_time,
             'closeTime': self.close_time,
-            'prophouseId': self.prophouse_id
+            'prophouseId': self.prophouse_id,
+            'formattedWeekday': self.days[self.weekday]
         }
