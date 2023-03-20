@@ -28,7 +28,7 @@ class Prop(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), unique=True)
+    name = db.Column(db.String(255))
     description = db.db.Column(db.String(255), nullable=True)
     color = db.Column(db.String(255), nullable=True)
     material = db.Column(db.String(255), nullable=True)
