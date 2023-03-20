@@ -262,6 +262,12 @@ Returns all the props in database.
 
   - Method: GET
   - URL: api/props
+  - Query Parameters
+
+    - category: integer, optional
+    - scene: integer, optional
+    - prophouse: integer, optional
+
   - Body: none
 
 - Successful Response
@@ -273,64 +279,6 @@ Returns all the props in database.
 
     ```json
     {
-      "Beers": [
-        {
-        "id": 1,
-        "prophouseId":1,
-        "categoryId":2,
-        "name":"Oxford Red Chesterfield Leather Sofa",
-        "color":"red",
-        "material":"leather",
-        "length":37,
-        "depth":37,
-        "height":30,
-        "style":"Chesterfield",
-        "quantity":3,
-        "weeklyPrice":130.00,
-        "availability":True,
-        "image":"url"
-        },
-        {
-        "id": 2,
-        "prophouseId":2,
-        "categoryId":3,
-        "name":"Large Barrel",
-        "color":"brown",
-        "material":"metal",
-        "description":"rusted, can be reprinted, with a hinged lid",
-        "length":26,
-        "depth":20,
-        "height":33,
-        "style":"vintage",
-        "quantity":4,
-        "weeklyPrice":83.00,
-        "availability":False,
-        "image":"url"
-        }
-      ]
-    }
-    ```
-
-### Get all Props Belongs to a Prophouse
-
-Returns all the props belongs to a prophouse.
-
-- Require Authentication: false
-- Request
-
-  - Method: GET
-  - URL: api/prophouses/:prophouseId/props
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-     {
       "Props": [
         {
         "id": 1,
@@ -346,23 +294,6 @@ Returns all the props belongs to a prophouse.
         "quantity":3,
         "weeklyPrice":130.00,
         "availability":True,
-        "image":"url"
-        },
-        {
-        "id": 3,
-        "prophouseId":1,
-        "categoryId":4,
-        "name":"Table",
-        "color":"green",
-        "material":"wood",
-        "description":"console table, weight capacity about 100 lbs",
-        "length":60,
-        "depth":10,
-        "height":35,
-        "style":"modern",
-        "quantity":1,
-        "weeklyPrice":240.00,
-        "availability":False,
         "image":"url"
         }
       ]
@@ -628,6 +559,646 @@ Deletes an existing prop.
     ```json
     {
       "message": "Prop couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+## Prophouse
+
+### Get all Prophouses
+
+Returns all the prophouses in database.
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: api/prophouses
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Prophouses": [
+        {
+          "id": 1,
+          "name": "The Warner Bros. Property Department",
+          "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+          "address": "4000 Warner Blvd., Bldg.30",
+          "city": "Burbank",
+          "state": "CA",
+          "zipcode": "91552",
+          "phone": "818.954.2181",
+          "logo": "url",
+          "twitter": "url",
+          "instagram": "url",
+          "pinterest": "url",
+          "businessDays": [
+            {
+              "id": 1,
+              "weekday": 0,
+              "openTime": 6,
+              "closeTime": 18,
+              "prophouseId": 1,
+              "formattedWeekday": "Monday"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+### Get the prophouse managed by the Current User
+
+Returns the prophouses managed (created) by the current user.
+
+- Require Authentication: isManager is true
+- Request
+
+  - Method: GET
+  - URL: /me/prophouse
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url"
+    }
+    ```
+
+### Create a Prophouse
+
+Creates and returns a new prophouse.
+
+- Require Authentication: isManager is True
+- Request
+
+  - Method: POST
+  - URL: api/prophouses
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [{ "weekday": 0, "openTime": 6, "closeTime": 18 }]
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18,
+          "prophouseId": 1,
+          "formattedWeekday": "Monday"
+        }
+      ]
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "description": "Description is required",
+        "address": "Address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "zipcode": "Zipcode is required",
+        "phone": "Phone is required"
+      }
+    }
+    ```
+
+### Edit a Prophouse
+
+Updates and returns an existing prophouse.
+
+- Require Authentication: isManager is True
+- Require proper authorization: Prophouse must managed by current user
+- Request
+
+  - Method: PUT
+  - URL: api/prophouses/:prophouseId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18
+        }
+      ]
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18,
+          "prophouseId": 1,
+          "formattedWeekday": "Monday"
+        }
+      ]
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "description": "Description is required",
+        "address": "Address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "zipcode": "Zipcode is required",
+        "phone": "Phone is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a Prophouse with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prophouse couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Prophouse
+
+Deletes an existing prophouse.
+
+- Require Authentication: isManager is True
+- Require proper authorization: Prophouse must managed by current user
+- Request
+
+  - Method: DELETE
+  - URL: api/prophouses/:prophouseId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a Prophouse with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prophouse couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+## Prophouse Form
+
+### Get all Form of a Prophouse
+
+Returns all the prophouses in database.
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: api/prophouses/:prophouseId/forms
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Prophouses": [
+        {
+          "id": 1,
+          "name": "The Warner Bros. Property Department",
+          "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+          "address": "4000 Warner Blvd., Bldg.30",
+          "city": "Burbank",
+          "state": "CA",
+          "zipcode": "91552",
+          "phone": "818.954.2181",
+          "logo": "url",
+          "twitter": "url",
+          "instagram": "url",
+          "pinterest": "url",
+          "businessDays": [
+            {
+              "id": 1,
+              "weekday": 0,
+              "openTime": 6,
+              "closeTime": 18,
+              "prophouseId": 1,
+              "formattedWeekday": "Monday"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+Returns the prophouses managed (created) by the current user.
+
+- Require Authentication: isManager is true
+- Request
+
+  - Method: GET
+  - URL: /me/prophouse
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url"
+    }
+    ```
+
+### Create a Form for a Prophouse
+
+Creates and returns a new prophouse.
+
+- Require Authentication: isManager is True
+- Request
+
+  - Method: POST
+  - URL: api/prophouses/:prophouseId/forms
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [{ "weekday": 0, "openTime": 6, "closeTime": 18 }]
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18,
+          "prophouseId": 1,
+          "formattedWeekday": "Monday"
+        }
+      ]
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "description": "Description is required",
+        "address": "Address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "zipcode": "Zipcode is required",
+        "phone": "Phone is required"
+      }
+    }
+    ```
+
+Updates and returns an existing prophouse.
+
+- Require Authentication: isManager is True
+- Require proper authorization: Prophouse must managed by current user
+- Request
+
+  - Method: PUT
+  - URL: api/prophouses/:prophouseId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18
+        }
+      ]
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Warner Bros. Property Department",
+      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
+      "address": "4000 Warner Blvd., Bldg.30",
+      "city": "Burbank",
+      "state": "CA",
+      "zipcode": "91552",
+      "phone": "818.954.2181",
+      "logo": "url",
+      "twitter": "url",
+      "instagram": "url",
+      "pinterest": "url",
+      "businessDays": [
+        {
+          "id": 1,
+          "weekday": 0,
+          "openTime": 6,
+          "closeTime": 18,
+          "prophouseId": 1,
+          "formattedWeekday": "Monday"
+        }
+      ]
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "description": "Description is required",
+        "address": "Address is required",
+        "city": "City is required",
+        "state": "State is required",
+        "zipcode": "Zipcode is required",
+        "phone": "Phone is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a Prophouse with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prophouse couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a Form from a Prophouse
+
+Deletes an existing prophouse.
+
+- Require Authentication: isManager is True
+- Require proper authorization: Prophouse must managed by current user
+- Request
+
+  - Method: DELETE
+  - URL: api/prophouses/:prophouseId/forms/:formId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a Prophouse with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prophouse couldn't be found",
       "statusCode": 404
     }
     ```

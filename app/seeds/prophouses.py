@@ -18,7 +18,7 @@ def seed_prophouses():
     )
     prophouse2 = Prophouse(
         name='Universal Studios Property Department',
-        description='The Universal Studios Property Department offers one of the largest, most diverse collections of props for all your production needs, including new media, student productions, and events. The department began over a hundred years ago and is regularly refreshed with new stock from Universal productions. ',
+        description='The Universal Studios Property Department offers one of the largest, most diverse collections of props for all your production needs, including new media, student productions, and events. The department began over a hundred years ago and is regularly refreshed with new stock from Universal productions.',
         address='100 Universal City Plaza, Bldg 8166/1',
         city='Universal City',
         state='CA',
