@@ -1014,9 +1014,9 @@ Deletes an existing form.
 
 ## Setlists
 
-### Get all Setlists of a current user
+### Get all setlists of a current user
 
-Returns all the prophouses in database.
+Returns all the setlists of a current user.
 
 - Require Authentication: true
 - Request
@@ -1194,6 +1194,192 @@ Deletes an existing setlist.
     ```json
     {
       "message": "Setlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+## Movies
+
+### Get all movies by current user
+
+Returns all the movies by current user.
+
+- Require Authentication: true
+- Request
+
+  - Method: GET
+  - URL: api/me/movies
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Movies": [
+        {
+          "id": 1,
+          "name": "The Rap of China"
+        }
+      ]
+    }
+    ```
+
+### Create a movie
+
+Creates and returns a new movie.
+
+- Require Authentication: True
+- Request
+
+  - Method: POST
+  - URL: api/me/movies
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Rap of China"
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Rap of China"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required"
+      }
+    }
+    ```
+
+### Edit a movie
+
+Updates and returns an existing movie.
+
+- Require Authentication: True
+- Require proper authorization: Movie must owned by the current user
+- Request
+
+  - Method: PUT
+  - URL: api/me/movies/:movieId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "The Rap of China"
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "The Rap of China"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a movie with the movie id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Movie couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a movie
+
+Deletes an existing movie.
+
+- Require Authentication: True
+- Require proper authorization: Movie must owned by the current user
+- Request
+
+  - Method: DELETE
+  - URL: api/me/movies/:movieId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a movie with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Movie couldn't be found",
       "statusCode": 404
     }
     ```
