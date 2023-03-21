@@ -93,7 +93,7 @@ Logs in a current user with valid credentials and returns the current user's inf
 - Request
 
   - Method: POST
-  - URL: api/session
+  - URL: api/login
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -157,14 +157,13 @@ Logs in a current user with valid credentials and returns the current user's inf
 
 ### Sign Up a User
 
-Creates a new user, logs them in as the current user, and returns the current
-user's information.
+Creates a new user, logs them in as the current user, and returns the current user's information.
 
 - Require Authentication: false
 - Request
 
   - Method: POST
-  - URL: api/users
+  - URL: api/signup
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -250,6 +249,19 @@ user's information.
       }
     }
     ```
+
+### Log Out a User
+
+Logs the current user out
+
+- Require Authentication: true
+- Request
+
+  - Method: GET
+  - URL: api/logout
+  - Headers:
+    - Content-Type: application/json
+  - Body none
 
 ## Props
 
@@ -355,7 +367,7 @@ Returns the details of a beer specified by its id.
 
 Creates and returns a new prop.
 
-- Require Authentication: isManager is True
+- Require Authentication: isManager is True, get prophouseId attribute from user.
 - Request
 
   - Method: POST
@@ -366,19 +378,18 @@ Creates and returns a new prop.
 
     ```json
     {
-    "prophouseId":1,
-    "categoryId":2,
-    "name":"Oxford Red Chesterfield Leather Sofa",
-    "color":"red",
-    "material":"leather",
-    "length":37,
-    "depth":37,
-    "height":30,
-    "style":"Chesterfield",
-    "quantity":3,
-    "weeklyPrice":130.00,
-    "availability":True,
-    "image":"url"
+      "categoryId": 2,
+      "name": "Oxford Red Chesterfield Leather Sofa",
+      "color": "red",
+      "material": "leather",
+      "length": 37,
+      "depth": 37,
+      "height": 30,
+      "style": "Chesterfield",
+      "quantity": 3,
+      "weeklyPrice": 130.0,
+      "availability": true,
+      "image": "url"
     }
     ```
 
@@ -390,21 +401,21 @@ Creates and returns a new prop.
   - Body:
 
     ```json
-     {
-    "id": 1,
-    "prophouseId":1,
-    "categoryId":2,
-    "name":"Oxford Red Chesterfield Leather Sofa",
-    "color":"red",
-    "material":"leather",
-    "length":37,
-    "depth":37,
-    "height":30,
-    "style":"Chesterfield",
-    "quantity":3,
-    "weeklyPrice":130.00,
-    "availability":True,
-    "image":"url"
+    {
+      "id": 1,
+      "prophouseId": 1,
+      "categoryId": 2,
+      "name": "Oxford Red Chesterfield Leather Sofa",
+      "color": "red",
+      "material": "leather",
+      "length": 37,
+      "depth": 37,
+      "height": 30,
+      "style": "Chesterfield",
+      "quantity": 3,
+      "weeklyPrice": 130.0,
+      "availability": true,
+      "image": "url"
     }
     ```
 
@@ -435,7 +446,7 @@ Creates and returns a new prop.
 Updates and returns an existing prop.
 
 - Require Authentication: isManager is True
-- Require proper authorization: Prop must belong to the current user's Prophouse
+- Require proper authorization: Prop must belong to the current user's prophouse
 - Request
 
   - Method: PUT
@@ -446,18 +457,18 @@ Updates and returns an existing prop.
 
     ```json
     {
-    "categoryId":2,
-    "name":"Oxford Red Chesterfield Leather Sofa",
-    "color":"red",
-    "material":"leather",
-    "length":37,
-    "depth":37,
-    "height":30,
-    "style":"Chesterfield",
-    "quantity":3,
-    "weeklyPrice":130.00,
-    "availability":True,
-    "image":"url"
+      "categoryId": 2,
+      "name": "Oxford Red Chesterfield Leather Sofa",
+      "color": "red",
+      "material": "leather",
+      "length": 37,
+      "depth": 37,
+      "height": 30,
+      "style": "Chesterfield",
+      "quantity": 3,
+      "weeklyPrice": 130.0,
+      "availability": true,
+      "image": "url"
     }
     ```
 
@@ -470,20 +481,20 @@ Updates and returns an existing prop.
 
     ```json
     {
-    "id": 1,
-    "prophouseId":1,
-    "categoryId":2,
-    "name":"Oxford Red Chesterfield Leather Sofa",
-    "color":"red",
-    "material":"leather",
-    "length":37,
-    "depth":37,
-    "height":30,
-    "style":"Chesterfield",
-    "quantity":3,
-    "weeklyPrice":130.00,
-    "availability":True,
-    "image":"url"
+      "id": 1,
+      "prophouseId": 1,
+      "categoryId": 2,
+      "name": "Oxford Red Chesterfield Leather Sofa",
+      "color": "red",
+      "material": "leather",
+      "length": 37,
+      "depth": 37,
+      "height": 30,
+      "style": "Chesterfield",
+      "quantity": 3,
+      "weeklyPrice": 130.0,
+      "availability": true,
+      "image": "url"
     }
     ```
 
@@ -528,7 +539,7 @@ Updates and returns an existing prop.
 Deletes an existing prop.
 
 - Require Authentication: isManager is True
-- Require proper authorization: Prop must belong to the current user's Prophouse
+- Require proper authorization: Prop must belong to the current user's prophouse
 - Request
 
   - Method: DELETE
@@ -923,6 +934,7 @@ Returns all the forms by a prophouse id.
 Creates and returns a new form for a prophouse.
 
 - Require Authentication: isManager is True
+- Require proper authorization: Prophouse must managed by current user
 - Request
 
   - Method: POST
@@ -1022,7 +1034,7 @@ Returns all the setlists of a current user.
 - Request
 
   - Method: GET
-  - URL: api/me/setlists
+  - URL: api/setlists
   - Body: none
 
 - Successful Response
@@ -1051,7 +1063,7 @@ Creates and returns a new setlist.
 - Request
 
   - Method: POST
-  - URL: api/me/setlists
+  - URL: api/setlists
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1102,7 +1114,7 @@ Updates and returns an existing setlist.
 - Request
 
   - Method: PUT
-  - URL: api/me/setlists/:setlistId
+  - URL: api/setlists/:setlistId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1167,7 +1179,7 @@ Deletes an existing setlist.
 - Request
 
   - Method: DELETE
-  - URL: api/me/setlists/:setlistId
+  - URL: api/setlists/:setlistId
   - Body: none
 
 - Successful Response
@@ -1200,9 +1212,38 @@ Deletes an existing setlist.
 
 ## Movies
 
+### Get all movies
+
+Returns all the movies in database.
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: api/movies
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Movies": [
+        {
+          "id": 1,
+          "name": "The Rap of China"
+        }
+      ]
+    }
+    ```
+
 ### Get all movies by current user
 
-Returns all the movies by current user.
+Returns all the movies from current user.
 
 - Require Authentication: true
 - Request
@@ -1237,7 +1278,7 @@ Creates and returns a new movie.
 - Request
 
   - Method: POST
-  - URL: api/me/movies
+  - URL: api/movies
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1288,7 +1329,7 @@ Updates and returns an existing movie.
 - Request
 
   - Method: PUT
-  - URL: api/me/movies/:movieId
+  - URL: api/movies/:movieId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1353,7 +1394,7 @@ Deletes an existing movie.
 - Request
 
   - Method: DELETE
-  - URL: api/me/movies/:movieId
+  - URL: api/movies/:movieId
   - Body: none
 
 - Successful Response
@@ -1386,45 +1427,15 @@ Deletes an existing movie.
 
 ## Scenes
 
-### Get all scenes
+### Get all scenes by movie
 
-Returns all the scenes from database.
+Returns all the scenes by movie.
 
 - Require Authentication: false
 - Request
 
   - Method: GET
-  - URL: api/scenes
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "Scenes": [
-        {
-          "id": 1,
-          "movieId": 1,
-          "name": "couch"
-        }
-      ]
-    }
-    ```
-
-### Get all scenes by current user
-
-Returns all the scenes by current user.
-
-- Require Authentication: true
-- Request
-
-  - Method: GET
-  - URL: api/me/scenes
+  - URL: api/movies/:movieId/scenes
   - Body: none
 
 - Successful Response
@@ -1447,10 +1458,11 @@ Returns all the scenes by current user.
 Creates and returns a new scene.
 
 - Require Authentication: True
+- Require proper authorization: Movie must owned by the current user
 - Request
 
   - Method: POST
-  - URL: api/scenes
+  - URL: api/movies/:movieId/scenes
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1500,11 +1512,11 @@ Creates and returns a new scene.
 Updates and returns an existing scene.
 
 - Require Authentication: True
-- Require proper authorization: Scene must owned by the current user
+- Require proper authorization: Movie must owned by the current user
 - Request
 
   - Method: PUT
-  - URL: api/scenes/:sceneId
+  - URL: api/movies/:movieId/scenes/:sceneId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1567,11 +1579,11 @@ Updates and returns an existing scene.
 Deletes an existing scene.
 
 - Require Authentication: True
-- Require proper authorization: Scene must owned by the current user
+- Require proper authorization: Movie must owned by the current user
 - Request
 
   - Method: DELETE
-  - URL: api/scenes/:sceneId
+  - URL: api/movies/:movieId/scenes/:sceneId
   - Body: none
 
 - Successful Response
