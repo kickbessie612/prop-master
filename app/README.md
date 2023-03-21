@@ -1383,3 +1383,221 @@ Deletes an existing movie.
       "statusCode": 404
     }
     ```
+
+## Scenes
+
+### Get all scenes
+
+Returns all the scenes from database.
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: api/scenes
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Scenes": [
+        {
+          "id": 1,
+          "movieId": 1,
+          "name": "couch"
+        }
+      ]
+    }
+    ```
+
+### Get all scenes by current user
+
+Returns all the scenes by current user.
+
+- Require Authentication: true
+- Request
+
+  - Method: GET
+  - URL: api/me/scenes
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "movieId": 1,
+      "name": "The Rap of China"
+    }
+    ```
+
+### Create a scene
+
+Creates and returns a new scene.
+
+- Require Authentication: True
+- Request
+
+  - Method: POST
+  - URL: api/scenes
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "couch",
+      "movieId": 1
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "movieId": 1,
+      "name": "couch"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "movieId": "Movie id is required"
+      }
+    }
+    ```
+
+### Edit a scene
+
+Updates and returns an existing scene.
+
+- Require Authentication: True
+- Require proper authorization: Scene must owned by the current user
+- Request
+
+  - Method: PUT
+  - URL: api/scenes/:sceneId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "couch"
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "movieId": 1,
+      "name": "couch"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required",
+        "movieId": "Movie id is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a scene with the scene id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Scene couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a scene
+
+Deletes an existing scene.
+
+- Require Authentication: True
+- Require proper authorization: Scene must owned by the current user
+- Request
+
+  - Method: DELETE
+  - URL: api/scenes/:sceneId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a scene with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Scene couldn't be found",
+      "statusCode": 404
+    }
+    ```
