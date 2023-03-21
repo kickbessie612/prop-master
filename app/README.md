@@ -889,7 +889,7 @@ Deletes an existing prophouse.
 
 ### Get all Form of a Prophouse
 
-Returns all the prophouses in database.
+Returns all the forms by a prophouse id.
 
 - Require Authentication: false
 - Request
@@ -907,71 +907,20 @@ Returns all the prophouses in database.
 
     ```json
     {
-      "Prophouses": [
+      "Forms": [
         {
           "id": 1,
-          "name": "The Warner Bros. Property Department",
-          "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-          "address": "4000 Warner Blvd., Bldg.30",
-          "city": "Burbank",
-          "state": "CA",
-          "zipcode": "91552",
-          "phone": "818.954.2181",
-          "logo": "url",
-          "twitter": "url",
-          "instagram": "url",
-          "pinterest": "url",
-          "businessDays": [
-            {
-              "id": 1,
-              "weekday": 0,
-              "openTime": 6,
-              "closeTime": 18,
-              "prophouseId": 1,
-              "formattedWeekday": "Monday"
-            }
-          ]
+          "prophouseId": 1,
+          "name": "Credit Application",
+          "url": "url"
         }
       ]
     }
     ```
 
-Returns the prophouses managed (created) by the current user.
-
-- Require Authentication: isManager is true
-- Request
-
-  - Method: GET
-  - URL: /me/prophouse
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "name": "The Warner Bros. Property Department",
-      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-      "address": "4000 Warner Blvd., Bldg.30",
-      "city": "Burbank",
-      "state": "CA",
-      "zipcode": "91552",
-      "phone": "818.954.2181",
-      "logo": "url",
-      "twitter": "url",
-      "instagram": "url",
-      "pinterest": "url"
-    }
-    ```
-
 ### Create a Form for a Prophouse
 
-Creates and returns a new prophouse.
+Creates and returns a new form for a prophouse.
 
 - Require Authentication: isManager is True
 - Request
@@ -984,18 +933,8 @@ Creates and returns a new prophouse.
 
     ```json
     {
-      "name": "The Warner Bros. Property Department",
-      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-      "address": "4000 Warner Blvd., Bldg.30",
-      "city": "Burbank",
-      "state": "CA",
-      "zipcode": "91552",
-      "phone": "818.954.2181",
-      "logo": "url",
-      "twitter": "url",
-      "instagram": "url",
-      "pinterest": "url",
-      "businessDays": [{ "weekday": 0, "openTime": 6, "closeTime": 18 }]
+      "name": "Credit Application",
+      "url": "url"
     }
     ```
 
@@ -1009,27 +948,9 @@ Creates and returns a new prophouse.
     ```json
     {
       "id": 1,
-      "name": "The Warner Bros. Property Department",
-      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-      "address": "4000 Warner Blvd., Bldg.30",
-      "city": "Burbank",
-      "state": "CA",
-      "zipcode": "91552",
-      "phone": "818.954.2181",
-      "logo": "url",
-      "twitter": "url",
-      "instagram": "url",
-      "pinterest": "url",
-      "businessDays": [
-        {
-          "id": 1,
-          "weekday": 0,
-          "openTime": 6,
-          "closeTime": 18,
-          "prophouseId": 1,
-          "formattedWeekday": "Monday"
-        }
-      ]
+      "prophouseId": 1,
+      "name": "Credit Application",
+      "url": "url"
     }
     ```
 
@@ -1046,126 +967,14 @@ Creates and returns a new prophouse.
       "statusCode": 400,
       "errors": {
         "name": "Name is required",
-        "description": "Description is required",
-        "address": "Address is required",
-        "city": "City is required",
-        "state": "State is required",
-        "zipcode": "Zipcode is required",
-        "phone": "Phone is required"
+        "url": "Url is required"
       }
-    }
-    ```
-
-Updates and returns an existing prophouse.
-
-- Require Authentication: isManager is True
-- Require proper authorization: Prophouse must managed by current user
-- Request
-
-  - Method: PUT
-  - URL: api/prophouses/:prophouseId
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "name": "The Warner Bros. Property Department",
-      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-      "address": "4000 Warner Blvd., Bldg.30",
-      "city": "Burbank",
-      "state": "CA",
-      "zipcode": "91552",
-      "phone": "818.954.2181",
-      "logo": "url",
-      "twitter": "url",
-      "instagram": "url",
-      "pinterest": "url",
-      "businessDays": [
-        {
-          "id": 1,
-          "weekday": 0,
-          "openTime": 6,
-          "closeTime": 18
-        }
-      ]
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "name": "The Warner Bros. Property Department",
-      "description": "Warner Bros. Property Department includes modern, mid century, industrial and antique furniture, smalls, lighting and fixtures for all your set dressing needs.",
-      "address": "4000 Warner Blvd., Bldg.30",
-      "city": "Burbank",
-      "state": "CA",
-      "zipcode": "91552",
-      "phone": "818.954.2181",
-      "logo": "url",
-      "twitter": "url",
-      "instagram": "url",
-      "pinterest": "url",
-      "businessDays": [
-        {
-          "id": 1,
-          "weekday": 0,
-          "openTime": 6,
-          "closeTime": 18,
-          "prophouseId": 1,
-          "formattedWeekday": "Monday"
-        }
-      ]
-    }
-    ```
-
-- Error Response: Body validation error
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Validation Error",
-      "statusCode": 400,
-      "errors": {
-        "name": "Name is required",
-        "description": "Description is required",
-        "address": "Address is required",
-        "city": "City is required",
-        "state": "State is required",
-        "zipcode": "Zipcode is required",
-        "phone": "Phone is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Prophouse with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Prophouse couldn't be found",
-      "statusCode": 404
     }
     ```
 
 ### Delete a Form from a Prophouse
 
-Deletes an existing prophouse.
+Deletes an existing form.
 
 - Require Authentication: isManager is True
 - Require proper authorization: Prophouse must managed by current user
@@ -1189,7 +998,7 @@ Deletes an existing prophouse.
     }
     ```
 
-- Error response: Couldn't find a Prophouse with the specified id
+- Error response: Couldn't find a form with the specified id
 
   - Status Code: 404
   - Headers:
@@ -1198,7 +1007,193 @@ Deletes an existing prophouse.
 
     ```json
     {
-      "message": "Prophouse couldn't be found",
+      "message": "Form couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+## Setlists
+
+### Get all Setlists of a current user
+
+Returns all the prophouses in database.
+
+- Require Authentication: true
+- Request
+
+  - Method: GET
+  - URL: api/me/setlists
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Setlists": [
+        {
+          "id": 1,
+          "name": "Single(short)"
+        }
+      ]
+    }
+    ```
+
+### Create a setlist
+
+Creates and returns a new setlist.
+
+- Require Authentication: True
+- Request
+
+  - Method: POST
+  - URL: api/me/setlists
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "Single(short)"
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Single(short)"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required"
+      }
+    }
+    ```
+
+### Edit a setlist
+
+Updates and returns an existing setlist.
+
+- Require Authentication: True
+- Require proper authorization: Setlist must owned by the current user
+- Request
+
+  - Method: PUT
+  - URL: api/me/setlists/:setlistId
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "name": "Single(short)"
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Single(short)"
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Validation Error",
+      "statusCode": 400,
+      "errors": {
+        "name": "Name is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a setlist with the setlist id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Setlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### Delete a setlist
+
+Deletes an existing setlist.
+
+- Require Authentication: True
+- Require proper authorization: Setlist must owned by the current user
+- Request
+
+  - Method: DELETE
+  - URL: api/me/setlists/:setlistId
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a setlist with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Setlist couldn't be found",
       "statusCode": 404
     }
     ```
