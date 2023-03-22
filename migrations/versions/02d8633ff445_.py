@@ -151,7 +151,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE scenes SET SCHEMA {SCHEMA};")
 
-     op.create_table('setlists',
+    op.create_table('setlists',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.String(length=255), nullable=True),
                     sa.Column('user_id', sa.Integer(), nullable=True),
