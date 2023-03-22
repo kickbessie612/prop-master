@@ -42,6 +42,7 @@ def create_prop():
     """
     Query for creating a prop and returning it as a dictionary
     """
+    print(current_user.is_manager)
     if not current_user.is_manager:
         return {'errors': [{"message": "Authentication required"}]}, 401
 

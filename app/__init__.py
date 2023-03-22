@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.prop_routes import prop_bp
 from .seeds import seed_commands
 from .config import Config
 
@@ -29,9 +30,9 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(prop_bp, url_prefix='/api/props')
-app.register_blueprint(prophouse_bp, url_prefix='/api/prophouses')
-app.register_blueprint(setlist_bp, url_prefix='/api/setlists')
-app.register_blueprint(movie_bp, url_prefix='/api/movies')
+# app.register_blueprint(prophouse_bp, url_prefix='/api/prophouses')
+# app.register_blueprint(setlist_bp, url_prefix='/api/setlists')
+# app.register_blueprint(movie_bp, url_prefix='/api/movies')
 
 db.init_app(app)
 Migrate(app, db)
