@@ -1210,6 +1210,130 @@ Deletes an existing setlist.
     }
     ```
 
+### Add a prop to a setlist
+
+Add a prop to setlist and returns a new setlist.
+
+- Require Authentication: True
+- Request
+
+  - Method: POST
+  - URL: api/setlists/:setlistId/props/:propId
+  - Headers:
+    - Content-Type: application/json
+  - Body none
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "propId": 1,
+      "setlistId": 1
+    }
+    ```
+
+- Error response: Couldn't find a prop with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prop couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+- Error response: Couldn't find a setlist with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Setlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+### delete a prop from a setlist
+
+Delete a prop from a setlist.
+
+- Require Authentication: True
+- Request
+
+  - Method: DELETE
+  - URL: api/setlists/:setlistId/props/:propId
+  - Headers:
+    - Content-Type: application/json
+  - Body none
+
+- Successful Response
+
+  - Status Code: 201
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "propId": 1,
+      "setlistId": 1
+    }
+    ```
+
+  - Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted",
+      "statusCode": 200
+    }
+    ```
+
+- Error response: Couldn't find a prop with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Prop couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
+- Error response: Couldn't find a setlist with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Setlist couldn't be found",
+      "statusCode": 404
+    }
+    ```
+
 ## Movies
 
 ### Get all movies

@@ -42,7 +42,6 @@ def create_prop():
     """
     Query for creating a prop and returning it as a dictionary
     """
-    print(current_user.is_manager)
     if not current_user.is_manager:
         return {'errors': [{"message": "Authentication required"}]}, 401
 
@@ -73,6 +72,10 @@ def edit_prop(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         prop = Prop.query.get(id)
+
+        if not prop:
+            return {'errors': [{"message": "Prop couldn't be found"}]}, 404
+
         form.populate_obj(prop)
         db.session.commit()
         return jsonify(prop.to_dict())
@@ -89,6 +92,8 @@ def delete_prop(id):
     if not current_user.is_manager:
         return {'errors': [{"message": "Authentication required"}]}, 401
     prop = Prop.query.get(id)
+    if not prop:
+        return {'errors': [{"message": "Prop couldn't be found"}]}, 404
     db.session.delete(prop)
     db.session.commit()
     return jsonify({
