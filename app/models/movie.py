@@ -1,15 +1,6 @@
 from .db import db, environment, SCHEMA
 from .user import users_movies
 
-# join table for users & movies
-# users_movies = db.Table('users_movies',
-#                         db.metadata,
-#                         db.Column('user_id', db.Integer,
-#                                   db.ForeignKey('users.id')),
-#                         db.Column('movie_id', db.Integer,
-#                                   db.ForeignKey('movies.id'))
-#                         )
-
 
 class Movie(db.Model):
     __tablename__ = 'movies'

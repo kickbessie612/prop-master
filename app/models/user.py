@@ -12,6 +12,8 @@ users_movies = db.Table('users_movies',
 
                         )
 
+if environment == "production":
+    users_movies.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'

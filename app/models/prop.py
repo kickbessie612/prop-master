@@ -10,6 +10,8 @@ scenes_props = db.Table('scenes_props',
                                   db.ForeignKey('props.id'))
                         )
 
+if environment == "production":
+    scenes_props.schema = SCHEMA
 
 # join table for setlists & props
 setlists_props = db.Table('setlists_props',
@@ -19,6 +21,9 @@ setlists_props = db.Table('setlists_props',
                           db.Column('prop_id', db.Integer,
                                     db.ForeignKey('props.id'))
                           )
+
+if environment == "production":
+    setlists_props.schema = SCHEMA
 
 
 class Prop(db.Model):

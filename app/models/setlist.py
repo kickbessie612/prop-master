@@ -10,6 +10,9 @@ setlists_props = db.Table('setlists_props',
                           extend_existing=True
                           )
 
+if environment == "production":
+    setlists_props.schema = SCHEMA
+
 
 class Setlist(db.Model):
     __tablename__ = 'setlists'

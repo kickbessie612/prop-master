@@ -10,6 +10,9 @@ scenes_props = db.Table('scenes_props',
                         extend_existing=True
                         )
 
+if environment == "production":
+    scenes_props.schema = SCHEMA
+
 
 class Scene(db.Model):
     __tablename__ = 'scenes'
