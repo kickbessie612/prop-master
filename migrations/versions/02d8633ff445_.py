@@ -48,6 +48,14 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE prophouses SET SCHEMA {SCHEMA};")
 
+    op.create_table('movies',
+                    sa.Column('id', sa.Integer(), nullable=False),
+                    sa.Column('name', sa.String(length=255), nullable=True),
+                    sa.PrimaryKeyConstraint('id')
+                    )
+    if environment == "production":
+        op.execute(f"ALTER TABLE movies SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('username', sa.String(length=40), nullable=True),
@@ -68,14 +76,6 @@ def upgrade():
                     )
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-    op.create_table('movies',
-                    sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('name', sa.String(length=255), nullable=True),
-                    sa.PrimaryKeyConstraint('id')
-                    )
-    if environment == "production":
-        op.execute(f"ALTER TABLE movies SET SCHEMA {SCHEMA};")
 
     op.create_table('categories',
                     sa.Column('id', sa.Integer(), nullable=False),
