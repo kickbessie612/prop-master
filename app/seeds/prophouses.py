@@ -10,7 +10,7 @@ def seed_prophouses():
         city='Burbank',
         state='CA',
         zipcode='91552',
-        phone='818.954.2181',
+        phone='8189542181',
         logo='https://property.warnerbros.com/Images/SiteLogo.png',
         twitter='https://twitter.com/wbpropertydept',
         instagram='https://www.instagram.com/wbpropertydept/',
@@ -23,7 +23,7 @@ def seed_prophouses():
         city='Universal City',
         state='CA',
         zipcode='91608',
-        phone='818.777.2784',
+        phone='8187772784',
         logo='https://props.universalstudios.com/Images/universal.png'
     )
     prophouse3 = Prophouse(
@@ -33,7 +33,7 @@ def seed_prophouses():
         city='Los Angeles',
         state='CA',
         zipcode='90019',
-        phone='323.931.1534',
+        phone='3239311534',
         logo='https://hpr.com/wp-content/uploads/2021/02/hpr-logo.png',
         facebook='https://www.facebook.com/thehandproproom/',
         twitter='https://twitter.com/handproproom',
