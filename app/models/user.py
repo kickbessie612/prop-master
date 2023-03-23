@@ -5,12 +5,11 @@ from flask_login import UserMixin
 # join table for users & movies
 users_movies = db.Table('users_movies',
                         db.metadata,
-                        db.Column('user_id', db.Integer,
-                                  db.ForeignKey(
-                                      add_prefix_for_prod(('users.id'))),
-                                  db.Column('movie_id', db.Integer,
-                                            db.ForeignKey(add_prefix_for_prod('movies.id')))
-                                  ))
+                        db.Column('user_id', db.Integer, db.ForeignKey(
+                            add_prefix_for_prod('users.id'))),
+                        db.Column('movie_id', db.Integer, db.ForeignKey(
+                            add_prefix_for_prod('movies.id')))
+                        )
 
 if environment == "production":
     users_movies.schema = SCHEMA
