@@ -4,9 +4,11 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 setlists_props = db.Table('setlists_props',
                           db.metadata,
                           db.Column('setlist_id', db.Integer,
-                                    db.ForeignKey('setlists.id')),
+                                    db.ForeignKey(
+                                        add_prefix_for_prod('setlists.id'))),
                           db.Column('prop_id', db.Integer,
-                                    db.ForeignKey('props.id')),
+                                    db.ForeignKey(
+                                        add_prefix_for_prod('props.id'))),
                           extend_existing=True
                           )
 

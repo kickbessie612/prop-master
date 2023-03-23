@@ -4,9 +4,9 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 scenes_props = db.Table('scenes_props',
                         db.metadata,
                         db.Column('scene_id', db.Integer,
-                                  db.ForeignKey('scenes.id')),
+                                  db.ForeignKey(add_prefix_for_prod('scenes.id'))),
                         db.Column('prop_id', db.Integer,
-                                  db.ForeignKey('props.id')),
+                                  db.ForeignKey(add_prefix_for_prod('props.id'))),
                         extend_existing=True
                         )
 

@@ -6,10 +6,11 @@ from flask_login import UserMixin
 users_movies = db.Table('users_movies',
                         db.metadata,
                         db.Column('user_id', db.Integer,
-                                  db.ForeignKey('users.id')),
-                        db.Column('movie_id', db.Integer,
-                                  db.ForeignKey('movies.id'))
-                        )
+                                  db.ForeignKey(
+                                      add_prefix_for_prod(('users.id'))),
+                                  db.Column('movie_id', db.Integer,
+                                            db.ForeignKey(add_prefix_for_prod('movies.id')))
+                                  ))
 
 if environment == "production":
     users_movies.schema = SCHEMA
@@ -41,11 +42,11 @@ class User(db.Model, UserMixin):
     # 1 user can have many setlists
     setlists = db.relationship('Setlist', back_populates='user')
 
-    @property
+    @ property
     def password(self):
         return self.hashed_password
 
-    @password.setter
+    @ password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 

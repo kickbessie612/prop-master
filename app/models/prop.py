@@ -5,9 +5,9 @@ import random
 scenes_props = db.Table('scenes_props',
                         db.metadata,
                         db.Column('scene_id', db.Integer,
-                                  db.ForeignKey('scenes.id')),
+                                  db.ForeignKey(add_prefix_for_prod('scenes.id'))),
                         db.Column('prop_id', db.Integer,
-                                  db.ForeignKey('props.id'))
+                                  db.ForeignKey(add_prefix_for_prod('props.id')))
                         )
 
 if environment == "production":
@@ -17,9 +17,9 @@ if environment == "production":
 setlists_props = db.Table('setlists_props',
                           db.metadata,
                           db.Column('setlist_id', db.Integer,
-                                    db.ForeignKey('setlists.id')),
+                                    db.ForeignKey(add_prefix_for_prod('setlists.id'))),
                           db.Column('prop_id', db.Integer,
-                                    db.ForeignKey('props.id'))
+                                    db.ForeignKey(add_prefix_for_prod('props.id')))
                           )
 
 if environment == "production":
