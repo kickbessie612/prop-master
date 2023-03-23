@@ -48,17 +48,17 @@ def seed():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.categories RESTART IDENTITY CASCADE;")
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.prophouses RESTART IDENTITY CASCADE;")
-        db.session.execute(
             f"TRUNCATE table {SCHEMA}.movies RESTART IDENTITY CASCADE;")
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.prophouses RESTART IDENTITY CASCADE;")
         # Add a truncate command here for every table that will be seeded.
         db.session.commit()
 
+    seed_prophouses()
     seed_users()
     seed_movies()
-    seed_prophouses()
     seed_categories()
     seed_props()
     seed_forms()
