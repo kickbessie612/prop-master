@@ -30,7 +30,7 @@ def upgrade():
                     sa.Column('city', sa.String(length=255), nullable=True),
                     sa.Column('state', sa.String(length=255), nullable=True),
                     sa.Column('zipcode', sa.Integer(), nullable=True),
-                    sa.Column('phone', sa.Integer(), nullable=True),
+                    sa.Column('phone', sa.String(), nullable=True),
                     sa.Column('logo', sa.String(length=255), nullable=True),
                     sa.Column('lat', sa.Float(), nullable=True),
                     sa.Column('lng', sa.Float(), nullable=True),

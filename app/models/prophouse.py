@@ -14,7 +14,7 @@ class Prophouse(db.Model):
     city = db.Column(db.String(255))
     state = db.Column(db.String(255))
     zipcode = db.Column(db.Integer)
-    phone = db.Column(db.Integer)
+    phone = db.Column(db.String)
     logo = db.Column(db.String(255), nullable=True)
     lat = db.Column(db.Float, nullable=True)
     lng = db.Column(db.Float, nullable=True)
