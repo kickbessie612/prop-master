@@ -9,11 +9,11 @@ users_movies = db.Table('users_movies',
                                   db.ForeignKey('users.id')),
                         db.Column('movie_id', db.Integer,
                                   db.ForeignKey('movies.id'))
-
                         )
 
 if environment == "production":
     users_movies.schema = SCHEMA
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
