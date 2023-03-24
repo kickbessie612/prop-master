@@ -8,6 +8,7 @@ def seed_users_movies():
 
     users[1].movies.extend([movies[0], movies[1]])
     users[2].movies.extend([movies[2]])
+    users[4].movies.extend([movies[3]])
 
     db.session.commit()
 

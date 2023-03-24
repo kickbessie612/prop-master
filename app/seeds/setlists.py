@@ -15,10 +15,15 @@ def seed_setlists():
         name='Lonely Blue Night',
         user_id=2
     )
+    setlist4 = Setlist(
+        name='Oracle',
+        user_id=5
+    )
 
     db.session.add(setlist1)
     db.session.add(setlist2)
     db.session.add(setlist3)
+    db.session.add(setlist4)
     db.session.commit()
 
 
