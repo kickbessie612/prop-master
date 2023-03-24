@@ -87,6 +87,10 @@ class Prop(db.Model):
             'weekly_price': self.weekly_price,
             'availability': self.availability,
             'image': self.image,
-            'category': self.category.to_dict(),
             'category_id': self.category_id
         }
+
+    def to_dict_detail(self):
+        dict = self.to_dict()
+        dict['category'] = self.category.to_dict()
+        return dict

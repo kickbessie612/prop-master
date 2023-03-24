@@ -85,6 +85,38 @@ export const deleteSetlist = setlistId => async dispatch => {
   return res;
 };
 
+// POST add prop to setlist
+export const setlistAddProp = (setlistId, propId) => async dispatch => {
+  const res = await fetch(`/api/setlists/${setlistId}/props/${propId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    dispatch(setSetlists([data]));
+  }
+  return data;
+};
+
+// DELETE remove prop from setlist
+export const setlistRemoveProp = (setlistId, propId) => async dispatch => {
+  const res = await fetch(`/api/setlists/${setlistId}/props/${propId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    dispatch(setSetlists([data]));
+  }
+  return data;
+};
+
 const setlistsReducer = (state = {}, action) => {
   let newState = { ...state };
   switch (action.type) {

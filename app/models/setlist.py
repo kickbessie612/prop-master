@@ -39,3 +39,8 @@ class Setlist(db.Model):
             'id': self.id,
             'name': self.name
         }
+
+    def to_dict_detail(self):
+        dict = self.to_dict()
+        dict['props'] = [prop.to_dict() for prop in self.props]
+        return dict
