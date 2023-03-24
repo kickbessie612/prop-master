@@ -84,8 +84,9 @@ class Prop(db.Model):
             'style': self.style,
             'barcode': self.barcode,
             'quantity': self.quantity,
-            'weeklyPrice': self.weekly_price,
+            'weekly_price': self.weekly_price,
             'availability': self.availability,
             'image': self.image,
-            'category': self.category.to_dict()
+            'category': self.category.to_dict(),
+            'category_id': self.category_id
         }

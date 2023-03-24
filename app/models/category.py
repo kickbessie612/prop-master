@@ -18,5 +18,5 @@ class Category(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'parentId': self.parent_id
+            'parent_id': self.parent_id
         }

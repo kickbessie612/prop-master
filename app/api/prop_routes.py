@@ -15,7 +15,7 @@ def get_all_props():
     """
     Query for all props and returns them in a list of prop dictionaries
     """
-    props = Prop.query.all()
+    props = Prop.query.options(joinedload(Prop.category)).all()
     return [prop.to_dict() for prop in props]
 
 
