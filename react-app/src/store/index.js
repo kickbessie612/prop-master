@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import propsReducer from './props';
 import setlistsReducer from './setlists';
+import categoriesReducer from './categories';
 
 const rootReducer = combineReducers({
   session,
   props: propsReducer,
-  setlists: setlistsReducer
+  setlists: setlistsReducer,
+  categories: categoriesReducer
 });
 
 let enhancer;

@@ -7,6 +7,7 @@ import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 
 import PropIndex from './components/props/PropIndex';
+import CreatePropForm from './components/props/CreatePropForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path='/props'>
             <PropIndex />
+          </Route>
+          <Route path='/props/new'>
+            <CreatePropForm />
           </Route>
         </Switch>
       )}
