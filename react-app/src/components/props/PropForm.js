@@ -35,12 +35,16 @@ const PropForm = ({ prop }) => {
       ...prop,
       name,
       description,
-      abv,
-      ibu: ibu ? ibu : -0,
-      style,
-      label,
-      year: year ? year : -0,
-      brewery_id: brewery_id ? brewery_id : -0
+      color: color ? color : -0,
+      material: material ? material : -0,
+      length: length ? length : -0,
+      depth: depth ? depth : -0,
+      height: height ? height : -0,
+      style: style ? style : -0,
+      quantity,
+      weekly_price,
+      availability,
+      image: image ? image : -0
     };
 
     const action = prop.id ? updateProp : createProp;
@@ -57,25 +61,15 @@ const PropForm = ({ prop }) => {
       <div>
         {prop.id ? (
           <>
-            <h1 className='introduction'>
-              Edit a&nbsp;<span>unique</span>&nbsp;prop
-            </h1>
-            <div className='form-description'>
-              Tell us about your new discovery!
-            </div>
+            <h1>Edit prop</h1>
           </>
         ) : (
           <>
-            <h1 className='introduction'>
-              Add a&nbsp;<span>new</span>&nbsp;prop
-            </h1>
-            <div className='form-description'>
-              Tell us about your new discovery!
-            </div>
+            <h1>Add a prop</h1>
           </>
         )}
       </div>
-      <form className='prop-form' onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -96,18 +90,37 @@ const PropForm = ({ prop }) => {
           onChange={e => setDescription(e.target.value)}
         />
         <input
-          type='number'
-          placeholder='abv'
+          type='text'
+          placeholder='color'
           required
-          value={abv}
+          value={color}
           onChange={e => setAbv(e.target.value)}
         />
         <input
-          type='number'
-          placeholder='ibu'
-          value={ibu}
+          type='text'
+          placeholder='material'
+          value={material}
           onChange={e => setIbu(e.target.value)}
         />
+        <input
+          type='number'
+          placeholder='length'
+          value={length}
+          onChange={e => setIbu(e.target.value)}
+        />
+        <input
+          type='number'
+          placeholder='depth'
+          value={depth}
+          onChange={e => setIbu(e.target.value)}
+        />
+        <input
+          type='number'
+          placeholder='height'
+          value={height}
+          onChange={e => setIbu(e.target.value)}
+        />
+
         <input
           type='text'
           placeholder='Style'
@@ -117,8 +130,8 @@ const PropForm = ({ prop }) => {
         />
         <input
           type='text'
-          placeholder='Prop Logo Url'
-          value={label}
+          placeholder='Prop image url'
+          value={image}
           onChange={e => setLabel(e.target.value)}
         />
         <input
