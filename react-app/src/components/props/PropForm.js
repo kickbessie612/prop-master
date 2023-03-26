@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createProp, updateProp } from '../../store/props';
+import { fetchCategories } from '../../store/categories';
 
 const PropForm = ({ prop }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const breweries = useSelector(state => Object.values(state.breweries));
+  const categories = useSelector(state =>
+    Object.values(state.categories).sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      } else if (b.name > a.name) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+  );
 
   const [name, setName] = useState(prop.name);
   const [description, setDescription] = useState(
@@ -22,11 +33,12 @@ const PropForm = ({ prop }) => {
   const [weekly_price, setWeeklyPrice] = useState(prop.weekly_price);
   const [availability, setAvailability] = useState(prop.availability);
   const [image, setImage] = useState(prop.image ? prop.image : '');
-  // const [brewery_id, setBreweryId] = useState(
-  //   prop.brewery ? prop.brewery.id : ''
-  // );
-
+  const [category_id, setCategoryId] = useState(prop.category_id);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -44,7 +56,8 @@ const PropForm = ({ prop }) => {
       quantity,
       weekly_price,
       availability,
-      image: image ? image : -0
+      image: image ? image : -0,
+      category_id
     };
 
     const action = prop.id ? updateProp : createProp;
@@ -85,66 +98,70 @@ const PropForm = ({ prop }) => {
         <input
           type='text'
           placeholder='Description'
-          required
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
         <input
           type='text'
           placeholder='color'
-          required
           value={color}
-          onChange={e => setAbv(e.target.value)}
+          onChange={e => setColor(e.target.value)}
         />
         <input
           type='text'
           placeholder='material'
           value={material}
-          onChange={e => setIbu(e.target.value)}
+          onChange={e => setMaterial(e.target.value)}
         />
         <input
           type='number'
           placeholder='length'
           value={length}
-          onChange={e => setIbu(e.target.value)}
+          onChange={e => setLength(e.target.value)}
         />
         <input
           type='number'
           placeholder='depth'
           value={depth}
-          onChange={e => setIbu(e.target.value)}
+          onChange={e => setDepth(e.target.value)}
         />
         <input
           type='number'
           placeholder='height'
           value={height}
-          onChange={e => setIbu(e.target.value)}
+          onChange={e => setHeight(e.target.value)}
         />
-
         <input
           type='text'
           placeholder='Style'
-          required
           value={style}
           onChange={e => setStyle(e.target.value)}
         />
         <input
           type='text'
-          placeholder='Prop image url'
-          value={image}
-          onChange={e => setLabel(e.target.value)}
+          placeholder='quantity'
+          required
+          value={quantity}
+          onChange={e => setQuantity(e.target.value)}
         />
         <input
-          type='number'
-          placeholder='Year'
-          value={year}
-          onChange={e => setYear(e.target.value)}
+          type='text'
+          placeholder='weekly price'
+          required
+          value={weekly_price}
+          onChange={e => setWeeklyPrice(e.target.value)}
         />
-        <select onChange={e => setBreweryId(e.target.value)}>
-          <option value={-0}>Select Brewery</option>
-          {breweries.map(({ id, name }, idx) =>
-            prop.id && prop.brewery && id === prop.brewery.id ? (
-              <option key={idx} defaultValue={id} selected>
+        <input
+          type='text'
+          placeholder='Prop image url'
+          value={image}
+          onChange={e => setImage(e.target.value)}
+        />
+        <select onChange={e => setCategoryId(e.target.value)}>
+          <option>Select Category</option>
+          {categories.map(({ id, name }, idx) =>
+            prop.category_id === id ? (
+              <option key={idx} value={id} selected>
                 {name}
               </option>
             ) : (
@@ -154,6 +171,22 @@ const PropForm = ({ prop }) => {
             )
           )}
         </select>
+        AVAILABILITY Yes
+        <input
+          type='radio'
+          name='availability'
+          value={true}
+          checked={availability === true}
+          onChange={e => setAvailability(true)}
+        />
+        No
+        <input
+          type='radio'
+          name='availability'
+          value={false}
+          checked={availability === false}
+          onChange={e => setAvailability(false)}
+        />
         <button>{prop.id ? 'update' : 'create'}</button>
       </form>
     </div>
