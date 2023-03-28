@@ -6,7 +6,7 @@ const PropIndexItem = ({ prop }) => {
     <div>
       <Link to={`/props/${prop.id}`}>
         <div>
-          <img src={prop.image} alt={prop.name} />
+          <img width={300} src={prop.image} alt={prop.name} />
         </div>
         <div>{prop.name}</div>
       </Link>

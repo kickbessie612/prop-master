@@ -8,6 +8,8 @@ import Navigation from './components/Navigation';
 
 import PropIndex from './components/props/PropIndex';
 import CreatePropForm from './components/props/CreatePropForm';
+import PropShow from './components/props/PropShow';
+import EditPropForm from './components/props/EditPropForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,11 +29,17 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route exact path='/props'>
-            <PropIndex />
+          <Route path='/props/:propId/edit'>
+            <EditPropForm />
           </Route>
           <Route path='/props/new'>
             <CreatePropForm />
+          </Route>
+          <Route path='/props/:propId'>
+            <PropShow />
+          </Route>
+          <Route path='/props'>
+            <PropIndex />
           </Route>
         </Switch>
       )}

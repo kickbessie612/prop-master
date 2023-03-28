@@ -57,7 +57,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'firstName': self.first_name,
-            'lastName': self.last_name,
-            'isManager': self.is_manager
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'is_manager': self.is_manager,
+            'prophouse_id': self.prophouse_id
         }

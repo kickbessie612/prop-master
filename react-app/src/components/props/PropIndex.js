@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProps } from '../../store/props';
 import { NavLink } from 'react-router-dom';
@@ -18,26 +18,44 @@ const PropIndex = () => {
     }
   );
 
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     dispatch(fetchProps());
   }, [dispatch]);
 
-  if (props.length === 0) {
-    return null;
-  }
+  const submitSearch = term => {
+    setSearch(term);
+    dispatch(fetchProps(term.toLowerCase()));
+  };
+
+  const resetSearch = () => {
+    setSearch('');
+    dispatch(fetchProps());
+  };
 
   return (
     <>
+      <div>
+        <input
+          type='text'
+          value={search}
+          onChange={e => submitSearch(e.target.value)}
+        />
+        <button onClick={resetSearch}>Reset</button>
+      </div>
       <div>
         <NavLink to='/props/new'>
           <button>Add Prop</button>
         </NavLink>
       </div>
-      <div>
-        {props.map(prop => (
-          <PropIndexItem prop={prop} key={prop.id} />
-        ))}
-      </div>
+      {props.length > 0 && (
+        <div>
+          {props.map(prop => (
+            <PropIndexItem prop={prop} key={prop.id} />
+          ))}
+        </div>
+      )}
     </>
   );
 };

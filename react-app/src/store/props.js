@@ -1,9 +1,17 @@
 const SET_PROPS = 'props/SET_PROPS';
+const REPLACE_PROPS = 'props/REPLACE_PROPS';
 const REMOVE_PROP = 'props/REMOVE_PROP';
 
 export const setProps = props => {
   return {
     type: SET_PROPS,
+    props
+  };
+};
+
+export const replaceProps = props => {
+  return {
+    type: REPLACE_PROPS,
     props
   };
 };
@@ -15,16 +23,24 @@ export const removeProp = propId => {
   };
 };
 
-// GET all props
-export const fetchProps = () => async dispatch => {
-  const res = await fetch('/api/props', {
+// GET all props/
+export const fetchProps = search => async dispatch => {
+  let url = '/api/props';
+  if (search) {
+    url += '?' + new URLSearchParams({ search });
+  }
+  const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json'
     }
   });
   const data = await res.json();
   if (res.ok) {
-    dispatch(setProps(data));
+    if (search) {
+      dispatch(replaceProps(data));
+    } else {
+      dispatch(setProps(data));
+    }
   }
   return data;
 };
@@ -87,15 +103,19 @@ export const deleteProp = propId => async dispatch => {
 
 const propsReducer = (state = {}, action) => {
   let newState = { ...state };
+  const propsObj = {};
   switch (action.type) {
     case SET_PROPS:
-      const propsObj = {};
-
       action.props.forEach(prop => {
         propsObj[prop.id] = prop;
       });
       newState = { ...newState, ...propsObj };
       return newState;
+    case REPLACE_PROPS:
+      action.props.forEach(prop => {
+        propsObj[prop.id] = prop;
+      });
+      return propsObj;
     case REMOVE_PROP:
       delete newState[action.propId];
       return newState;

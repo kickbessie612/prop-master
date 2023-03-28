@@ -15,7 +15,12 @@ def get_all_props():
     """
     Query for all props and returns them in a list of prop dictionaries
     """
-    props = Prop.query.options(joinedload(Prop.category)).all()
+    search = request.args.get('search')
+    props = Prop.query.options(joinedload(
+        Prop.category), joinedload(Prop.prophouse))
+    if search:
+        props = props.filter(Prop.name.ilike(f'%{search}%'))
+    props = props.all()
     return [prop.to_dict_detail() for prop in props]
 
 
@@ -25,7 +30,8 @@ def get_prop(id):
     """
     Query for a prop by id and returns that prop in a dictionary
     """
-    prop = Prop.query.get(id)
+    prop = Prop.query.options(joinedload(
+        Prop.category), joinedload(Prop.prophouse)).get(id)
     if prop:
         return jsonify(prop.to_dict_detail())
     else:
@@ -50,6 +56,7 @@ def create_prop():
         new_prop.prophouse_id = current_user.prophouse_id
         db.session.add(new_prop)
         db.session.commit()
+        # TODO: fix query with joinedloads later
         return jsonify(
             new_prop.to_dict_detail()
         )
@@ -68,7 +75,8 @@ def edit_prop(id):
     form = PropForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        prop = Prop.query.get(id)
+        prop = Prop.query.options(joinedload(
+            Prop.category), joinedload(Prop.prophouse)).get(id)
         # TODO: Check that prop belongs to a prophouse current_user manages
         if not prop:
             return {"message": "Prop not found"}, 404

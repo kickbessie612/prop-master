@@ -47,6 +47,10 @@ class Prophouse(db.Model):
             'phone': self.phone,
             'logo': self.logo,
             'lat': self.lat,
-            'lng': self.lng,
-            'businessDays': [day.to_dict() for day in self.business_days]
+            'lng': self.lng
         }
+
+    def to_dict_detail(self):
+        dict = self.to_dict()
+        # TODO: fix time serialization
+        dict['business_days'] = [day.to_dict() for day in self.business_days]

@@ -24,7 +24,7 @@ const PropShow = () => {
     e.preventDefault();
     if (!window.confirm('Do you want to delete this prop?')) return;
     await dispatch(deleteProp(propId));
-    history.push('/');
+    history.push('/props');
   };
 
   if (!prop) {
@@ -38,12 +38,14 @@ const PropShow = () => {
           <h2>{prop.name}</h2>
 
           <div>
-            {prop.description}, {prop.color},{prop.material}
+            {prop.color},{prop.material},{prop.description}
           </div>
 
-          <div>{prop.brewery_id}</div>
+          <div>{prop.availability ? 'available' : 'not available'}</div>
 
-          {sessionUser && prop.userId === sessionUser.id && (
+          <div>{prop.prophouse.name}</div>
+
+          {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
             <>
               <div>
                 <button>
@@ -55,7 +57,7 @@ const PropShow = () => {
           )}
           <hr />
           <div>
-            <img src={prop.image} alt={prop.name} />
+            <img width={300} src={prop.image} alt={prop.name} />
           </div>
         </div>
       </div>
