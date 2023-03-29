@@ -104,7 +104,7 @@ def setlist_add_prop(setlist_id, prop_id):
 
     setlist.props.append(prop)
     db.session.commit()
-    return jsonify(setlist.to_dict_detail())
+    return jsonify(setlist.to_dict())
 
 # REMOVE PROP FROM SETLIST
 
@@ -125,4 +125,4 @@ def setlist_remove_prop(setlist_id, prop_id):
 
     setlist.props.remove(prop)
     db.session.commit()
-    return jsonify(setlist.to_dict_detail())
+    return jsonify(setlist.to_dict())

@@ -1,8 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { fetchProp, deleteProp } from '../../store/props';
+import {
+  fetchSetlists,
+  setlistAddProp,
+  setlistRemoveProp
+} from '../../store/setlists';
 
 import './PropShow.css';
 
@@ -14,9 +19,16 @@ const PropShow = () => {
   const { propId } = useParams();
   const propsObj = useSelector(state => state.props);
 
+  let setlists = useSelector(state => Object.values(state.setlists));
+
+  const [selectedSetlist, setSelectedSetlist] = useState('');
+
   useEffect(() => {
     dispatch(fetchProp(propId));
-  }, [dispatch, propId]);
+    if (sessionUser && !sessionUser.is_manager) {
+      dispatch(fetchSetlists());
+    }
+  }, [dispatch, propId, sessionUser]);
 
   const prop = propsObj[propId];
 
@@ -27,9 +39,32 @@ const PropShow = () => {
     history.push('/props');
   };
 
-  if (!prop) {
+  const handleSetlistSelect = setlistId => {
+    setSelectedSetlist(setlistId);
+  };
+
+  const handleAddButton = async e => {
+    if (!selectedSetlist) {
+      return;
+    }
+    await dispatch(setlistAddProp(selectedSetlist, propId));
+    setSelectedSetlist('');
+    dispatch(fetchProp(propId));
+  };
+
+  const handleRemoveButton = async setlistId => {
+    await dispatch(setlistRemoveProp(setlistId, propId));
+    setSelectedSetlist('');
+    dispatch(fetchProp(propId));
+  };
+
+  if (!prop || !prop.setlists) {
     return null;
   }
+  // only show setlists in the dropdown this prop hasn't been added to
+  setlists = setlists.filter(
+    obj1 => !prop.setlists.some(obj2 => obj1.id === obj2.id)
+  );
 
   return (
     <>
@@ -59,6 +94,30 @@ const PropShow = () => {
           <div>
             <img width={300} src={prop.image} alt={prop.name} />
           </div>
+          <hr />
+          <div>
+            <select onChange={e => handleSetlistSelect(e.target.value)}>
+              <option value=''>Select Setlist</option>
+              {setlists.map(setlist => (
+                <option key={setlist.id} value={setlist.id}>
+                  {setlist.name}
+                </option>
+              ))}
+            </select>
+            <button onClick={handleAddButton}>Add To Setlist</button>
+          </div>
+          {sessionUser && !sessionUser.is_manager && (
+            <div>
+              {prop.setlists.map(setlist => (
+                <div key={setlist.id}>
+                  {setlist.name}{' '}
+                  <button onClick={e => handleRemoveButton(setlist.id)}>
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

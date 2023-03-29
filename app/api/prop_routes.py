@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload
-from app.models import db, Prop
+from app.models import db, Prop, Setlist
 from app.forms import PropForm
 from .utils import validation_errors_to_error_messages
 
@@ -33,7 +33,11 @@ def get_prop(id):
     prop = Prop.query.options(joinedload(
         Prop.category), joinedload(Prop.prophouse)).get(id)
     if prop:
-        return jsonify(prop.to_dict_detail())
+        setlists = Setlist.query.join(Setlist.props).filter(
+            Prop.id == id, Setlist.user_id == current_user.id).all()
+        dict = prop.to_dict_detail()
+        dict['setlists'] = [setlist.to_dict() for setlist in setlists]
+        return jsonify(dict)
     else:
         return {'message': 'Prop not found'}, 404
 
