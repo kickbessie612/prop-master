@@ -8,8 +8,12 @@ import Navigation from './components/Navigation';
 
 import PropIndex from './components/props/PropIndex';
 import CreatePropForm from './components/props/CreatePropForm';
-import PropShow from './components/props/PropShow';
 import EditPropForm from './components/props/EditPropForm';
+import PropShow from './components/props/PropShow';
+import SetlistIndex from './components/setlists/SetlistIndex';
+import SetlistShow from './components/setlists/SetlistShow';
+import CreateSetlistForm from './components/setlists/CreateSetlistForm';
+import EditSetlistForm from './components/setlists/EditSetlistForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +44,18 @@ function App() {
           </Route>
           <Route path='/props'>
             <PropIndex />
+          </Route>
+          <Route path='/setlists/:setlistId/edit'>
+            <EditSetlistForm />
+          </Route>
+          <Route path='/setlists/new'>
+            <CreateSetlistForm />
+          </Route>
+          <Route path='/setlists/:setlistId'>
+            <SetlistShow />
+          </Route>
+          <Route path='/setlists'>
+            <SetlistIndex />
           </Route>
         </Switch>
       )}

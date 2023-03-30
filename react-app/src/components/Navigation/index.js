@@ -22,6 +22,12 @@ function Navigation({ isLoaded }) {
         Props
       </NavLink>
 
+      {sessionUser && !sessionUser.is_manager && (
+        <NavLink exact to='/setlists'>
+          Setlists
+        </NavLink>
+      )}
+
       {isLoaded && (
         <li>
           <ProfileButton user={sessionUser} />

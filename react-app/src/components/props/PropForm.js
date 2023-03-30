@@ -187,7 +187,7 @@ const PropForm = ({ prop }) => {
           checked={availability === false}
           onChange={e => setAvailability(false)}
         />
-        <button>{prop.id ? 'update' : 'create'}</button>
+        <button>Save</button>
       </form>
     </div>
   );
