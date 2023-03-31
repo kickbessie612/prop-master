@@ -42,6 +42,20 @@ def upgrade():
                     sa.Column('yelp', sa.String(length=255), nullable=True),
                     sa.Column('pinterest', sa.String(
                         length=255), nullable=True),
+                    sa.Column('monday_open', sa.Integer(), nullable=True),
+                    sa.Column('monday_close', sa.Integer(), nullable=True),
+                    sa.Column('tuesday_open', sa.Integer(), nullable=True),
+                    sa.Column('tuesday_close', sa.Integer(), nullable=True),
+                    sa.Column('wednesday_open', sa.Integer(), nullable=True),
+                    sa.Column('wednesday_close', sa.Integer(), nullable=True),
+                    sa.Column('thursday_open', sa.Integer(), nullable=True),
+                    sa.Column('thursday_close', sa.Integer(), nullable=True),
+                    sa.Column('friday_open', sa.Integer(), nullable=True),
+                    sa.Column('friday_close', sa.Integer(), nullable=True),
+                    sa.Column('saturday_open', sa.Integer(), nullable=True),
+                    sa.Column('saturday_close', sa.Integer(), nullable=True),
+                    sa.Column('sunday_open', sa.Integer(), nullable=True),
+                    sa.Column('sunday_close', sa.Integer(), nullable=True),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('name')
                     )
@@ -127,19 +141,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE forms SET SCHEMA {SCHEMA};")
 
-    op.create_table('business_days',
-                    sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('weekday', sa.Integer(), nullable=True),
-                    sa.Column('open_time', sa.Time(), nullable=True),
-                    sa.Column('close_time', sa.Time(), nullable=True),
-                    sa.Column('prophouse_id', sa.Integer(), nullable=True),
-                    sa.ForeignKeyConstraint(
-                        ['prophouse_id'], ['prophouses.id'], ),
-                    sa.PrimaryKeyConstraint('id')
-                    )
-    if environment == "production":
-        op.execute(f"ALTER TABLE business_days SET SCHEMA {SCHEMA};")
-
     op.create_table('scenes',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.String(length=255), nullable=True),
@@ -200,7 +201,6 @@ def downgrade():
     op.drop_table('scenes')
     op.drop_table('props')
     op.drop_table('forms')
-    op.drop_table('business_days')
     op.drop_table('prophouses')
     op.drop_table('movies')
     op.drop_table('categories')

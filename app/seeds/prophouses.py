@@ -14,7 +14,17 @@ def seed_prophouses():
         logo='https://property.warnerbros.com/Images/SiteLogo.png',
         twitter='https://twitter.com/wbpropertydept',
         instagram='https://www.instagram.com/wbpropertydept/',
-        pinterest='https://www.pinterest.com/wbpropertydept/'
+        pinterest='https://www.pinterest.com/wbpropertydept/',
+        monday_open=6,
+        monday_close=18,
+        tuesday_open=6,
+        tuesday_close=18,
+        wednesday_open=6,
+        wednesday_close=18,
+        thursday_open=6,
+        thursday_close=18,
+        friday_open=6,
+        friday_close=18
     )
     prophouse2 = Prophouse(
         name='Universal Studios Property Department',
@@ -24,7 +34,17 @@ def seed_prophouses():
         state='CA',
         zipcode='91608',
         phone='8187772784',
-        logo='https://props.universalstudios.com/Images/universal.png'
+        logo='https://props.universalstudios.com/Images/universal.png',
+        monday_open=6,
+        monday_close=18,
+        tuesday_open=6,
+        tuesday_close=18,
+        wednesday_open=6,
+        wednesday_close=18,
+        thursday_open=6,
+        thursday_close=18,
+        friday_open=6,
+        friday_close=18
     )
     prophouse3 = Prophouse(
         name='The Hand Prop Room',
@@ -38,7 +58,17 @@ def seed_prophouses():
         facebook='https://www.facebook.com/thehandproproom/',
         twitter='https://twitter.com/handproproom',
         instagram='https://www.instagram.com/hprcan/',
-        yelp='https://www.yelp.com/biz/the-hand-prop-room-los-angeles'
+        yelp='https://www.yelp.com/biz/the-hand-prop-room-los-angeles',
+        monday_open=6,
+        monday_close=18,
+        tuesday_open=6,
+        tuesday_close=18,
+        wednesday_open=6,
+        wednesday_close=18,
+        thursday_open=6,
+        thursday_close=18,
+        friday_open=6,
+        friday_close=18
     )
 
     db.session.add(prophouse1)

@@ -9,6 +9,7 @@ import * as sessionActions from './store/session';
 import * as propActions from './store/props';
 import * as setlistActions from './store/setlists';
 import * as categoryActions from './store/categories';
+import * as prophouseActions from './store/prophouses';
 import App from './App';
 
 import './index.css';
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.propActions = propActions;
   window.setlistActions = setlistActions;
   window.categoryActions = categoryActions;
+  window.prophouseActions = prophouseActions;
 }
 
 // Wrap the application with the Modal provider and render the Modal component

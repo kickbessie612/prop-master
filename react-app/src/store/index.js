@@ -4,12 +4,14 @@ import session from './session';
 import propsReducer from './props';
 import setlistsReducer from './setlists';
 import categoriesReducer from './categories';
+import prophousesReducer from './prophouses';
 
 const rootReducer = combineReducers({
   session,
   props: propsReducer,
   setlists: setlistsReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  prophouses: prophousesReducer
 });
 
 let enhancer;

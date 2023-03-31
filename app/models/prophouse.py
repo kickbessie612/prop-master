@@ -23,9 +23,20 @@ class Prophouse(db.Model):
     instagram = db.Column(db.String(255), nullable=True)
     yelp = db.Column(db.String(255), nullable=True)
     pinterest = db.Column(db.String(255), nullable=True)
-
-    # 1 prophouse can have many business days
-    business_days = db.relationship('BusinessDay', back_populates='prophouse')
+    monday_open = db.Column(db.Integer, nullable=True)
+    monday_close = db.Column(db.Integer, nullable=True)
+    tuesday_open = db.Column(db.Integer, nullable=True)
+    tuesday_close = db.Column(db.Integer, nullable=True)
+    wednesday_open = db.Column(db.Integer, nullable=True)
+    wednesday_close = db.Column(db.Integer, nullable=True)
+    thursday_open = db.Column(db.Integer, nullable=True)
+    thursday_close = db.Column(db.Integer, nullable=True)
+    friday_open = db.Column(db.Integer, nullable=True)
+    friday_close = db.Column(db.Integer, nullable=True)
+    saturday_open = db.Column(db.Integer, nullable=True)
+    saturday_close = db.Column(db.Integer, nullable=True)
+    sunday_open = db.Column(db.Integer, nullable=True)
+    sunday_close = db.Column(db.Integer, nullable=True)
 
     # 1 prophouse can have many users(as manager)
     users = db.relationship('User', back_populates='prophouse')
@@ -47,10 +58,19 @@ class Prophouse(db.Model):
             'phone': self.phone,
             'logo': self.logo,
             'lat': self.lat,
-            'lng': self.lng
+            'lng': self.lng,
+            'monday_open': self.monday_open,
+            'monday_close': self.monday_close,
+            'tuesday_open': self.tuesday_open,
+            'tuesday_close': self.tuesday_close,
+            'wednesday_open': self.wednesday_open,
+            'wednesday_close': self.wednesday_close,
+            'thursday_open': self.thursday_open,
+            'thursday_close': self.thursday_close,
+            'friday_open': self.friday_open,
+            'friday_close': self.friday_close,
+            'saturday_open': self.saturday_open,
+            'saturday_close': self.saturday_close,
+            'sunday_open': self.sunday_open,
+            'sunday_close': self.sunday_close,
         }
-
-    def to_dict_detail(self):
-        dict = self.to_dict()
-        # TODO: fix time serialization
-        dict['business_days'] = [day.to_dict() for day in self.business_days]

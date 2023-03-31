@@ -16,7 +16,7 @@ const SetlistShow = () => {
 
   useEffect(() => {
     dispatch(fetchSetlist(setlistId));
-  }, []);
+  }, [dispatch, setlistId]);
 
   if (!setlist || !setlist.props) {
     return null;
@@ -44,7 +44,9 @@ const SetlistShow = () => {
 
       {setlist.props.map(prop => (
         <div key={prop.id}>
-          <h2>{prop.name}</h2>
+          <h2>
+            <Link to={`/props/${prop.id}`}>{prop.name}</Link>
+          </h2>
           <button onClick={e => handleRemoveButton(prop.id)}>
             Remove Prop
           </button>

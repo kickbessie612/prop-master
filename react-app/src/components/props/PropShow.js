@@ -63,7 +63,8 @@ const PropShow = () => {
   }
   // only show setlists in the dropdown this prop hasn't been added to
   setlists = setlists.filter(
-    obj1 => !prop.setlists.some(obj2 => obj1.id === obj2.id)
+    setlist =>
+      !prop.setlists.some(currentSetlist => setlist.id === currentSetlist.id)
   );
 
   return (
@@ -78,7 +79,11 @@ const PropShow = () => {
 
           <div>{prop.availability ? 'available' : 'not available'}</div>
 
-          <div>{prop.prophouse.name}</div>
+          <div>
+            <Link to={`/prophouses/${prop.prophouse.id}`}>
+              {prop.prophouse.name}
+            </Link>
+          </div>
 
           {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
             <>
@@ -110,7 +115,7 @@ const PropShow = () => {
             <div>
               {prop.setlists.map(setlist => (
                 <div key={setlist.id}>
-                  {setlist.name}{' '}
+                  <Link to={`/setlists/${setlist.id}`}>{setlist.name}</Link>
                   <button onClick={e => handleRemoveButton(setlist.id)}>
                     X
                   </button>

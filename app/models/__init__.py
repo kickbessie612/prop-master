@@ -1,6 +1,5 @@
 from .db import db
 from .user import User
-from .business_day import BusinessDay
 from .category import Category
 from .movie import Movie
 from .prop import Prop

@@ -9,7 +9,7 @@ const SetlistIndex = () => {
 
   useEffect(() => {
     dispatch(fetchSetlists());
-  }, []);
+  }, [dispatch]);
 
   if (setlists.length === 0) {
     return null;

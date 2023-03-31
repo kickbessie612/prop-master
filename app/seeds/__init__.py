@@ -4,7 +4,6 @@ from .movies import seed_movies, undo_movies
 from .users_movies import seed_users_movies, undo_users_movies
 from .prophouses import seed_prophouses, undo_prophouses
 from .forms import seed_forms, undo_forms
-from .business_days import seed_business_days, undo_business_days
 from .scenes import seed_scenes, undo_scenes
 from .setlists import seed_setlists, undo_setlists
 from .categories import seed_categories, undo_categories
@@ -40,8 +39,6 @@ def seed():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.scenes RESTART IDENTITY CASCADE;")
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.business_days RESTART IDENTITY CASCADE;")
-        db.session.execute(
             f"TRUNCATE table {SCHEMA}.forms RESTART IDENTITY CASCADE;")
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.props RESTART IDENTITY CASCADE;")
@@ -62,7 +59,6 @@ def seed():
     seed_categories()
     seed_props()
     seed_forms()
-    seed_business_days()
     seed_scenes()
     seed_setlists()
     seed_users_movies()
@@ -79,7 +75,6 @@ def undo():
     undo_users_movies()
     undo_setlists()
     undo_scenes()
-    undo_business_days()
     undo_forms()
     undo_props()
     undo_categories()

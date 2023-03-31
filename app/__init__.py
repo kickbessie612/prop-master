@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.prop_routes import prop_routes
 from .api.category_routes import category_routes
 from .api.setlist_routes import setlist_routes
+from .api.prophouse_routes import prophouse_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,7 +35,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(prop_routes, url_prefix='/api/props')
 app.register_blueprint(setlist_routes, url_prefix='/api/setlists')
 app.register_blueprint(category_routes, url_prefix='/api/categories')
-# app.register_blueprint(prophouse_bp, url_prefix='/api/prophouses')
+app.register_blueprint(prophouse_routes, url_prefix='/api/prophouses')
 # app.register_blueprint(movie_bp, url_prefix='/api/movies')
 
 db.init_app(app)
