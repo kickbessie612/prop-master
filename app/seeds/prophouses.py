@@ -36,15 +36,15 @@ def seed_prophouses():
         phone='8187772784',
         logo='https://props.universalstudios.com/Images/universal.png',
         monday_open=6,
-        monday_close=18,
+        monday_close=17,
         tuesday_open=6,
-        tuesday_close=18,
+        tuesday_close=17,
         wednesday_open=6,
-        wednesday_close=18,
+        wednesday_close=17,
         thursday_open=6,
-        thursday_close=18,
+        thursday_close=17,
         friday_open=6,
-        friday_close=18
+        friday_close=17
     )
     prophouse3 = Prophouse(
         name='The Hand Prop Room',
@@ -59,16 +59,16 @@ def seed_prophouses():
         twitter='https://twitter.com/handproproom',
         instagram='https://www.instagram.com/hprcan/',
         yelp='https://www.yelp.com/biz/the-hand-prop-room-los-angeles',
-        monday_open=6,
-        monday_close=18,
-        tuesday_open=6,
-        tuesday_close=18,
-        wednesday_open=6,
-        wednesday_close=18,
-        thursday_open=6,
-        thursday_close=18,
-        friday_open=6,
-        friday_close=18
+        monday_open=7,
+        monday_close=17,
+        tuesday_open=7,
+        tuesday_close=17,
+        wednesday_open=7,
+        wednesday_close=17,
+        thursday_open=7,
+        thursday_close=17,
+        friday_open=7,
+        friday_close=17
     )
 
     db.session.add(prophouse1)
