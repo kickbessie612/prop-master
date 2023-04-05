@@ -16,6 +16,7 @@ import SetlistShow from './components/setlists/SetlistShow';
 import EditSetlistForm from './components/setlists/EditSetlistForm';
 import ProphouseShow from './components/prophouses/ProphouseShow';
 import EditProphouseForm from './components/prophouses/EditProphouseForm';
+import ProphouseIndex from './components/prophouses/ProphouseIndex';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route path='/prophouses/:prophouseId'>
             <ProphouseShow />
+          </Route>
+          <Route path='/prophouses'>
+            <ProphouseIndex />
           </Route>
         </Switch>
       )}

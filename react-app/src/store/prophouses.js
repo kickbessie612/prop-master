@@ -7,6 +7,20 @@ export const setProphouses = prophouses => {
   };
 };
 
+// GET all prophouses
+export const fetchProphouses = () => async dispatch => {
+  const res = await fetch('/api/prophouses', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await res.json();
+  if (res.ok) {
+    dispatch(setProphouses(data));
+  }
+  return data;
+};
+
 // GET a prophouse by id
 export const fetchProphouse = prophouseId => async dispatch => {
   const res = await fetch(`/api/prophouses/${prophouseId}`);

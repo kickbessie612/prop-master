@@ -8,6 +8,16 @@ from .utils import validation_errors_to_error_messages
 prophouse_routes = Blueprint('prophouse', __name__)
 
 
+# GET ALL PROPHOUSES
+@prophouse_routes.route('')
+def get_all_prophouse():
+    """
+    Query for all prophouses returns them in a list of prop dictionaries
+    """
+    prophouses = Prophouse.query.all()
+    return jsonify([prophouse.to_dict() for prophouse in prophouses])
+
+
 # GET PROPHOUSE BY ID
 @prophouse_routes.route('/<int:id>')
 def get_prophouse(id):
