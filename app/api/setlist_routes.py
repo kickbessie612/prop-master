@@ -15,7 +15,8 @@ def get_all_setlists():
     """
     Query for all setlists and returns them in a list of setlist dictionaries
     """
-    setlists = Setlist.query.filter_by(user_id=current_user.id).all()
+    setlists = Setlist.query.options(joinedload(
+        Setlist.props)).filter_by(user_id=current_user.id).all()
     return [setlist.to_dict() for setlist in setlists]
 
 
@@ -26,10 +27,10 @@ def get_setlist(id):
     """
     Query for a setlist by id and returns that setlist in a dictionary
     """
-    setlist = Setlist.query.options(joinedload(Setlist.props)).get(id)
+    setlist = Setlist.query.get(id)
     if not setlist or setlist.user_id != current_user.id:
         return {"message": "Setlist not found"}, 404
-    return jsonify(setlist.to_dict_detail())
+    return jsonify(setlist.to_dict())
 
 
 # CREATE A SETLIST
@@ -48,7 +49,7 @@ def create_setlist():
         db.session.add(new_setlist)
         db.session.commit()
         return jsonify(
-            new_setlist.to_dict_detail()
+            new_setlist.to_dict()
         )
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -68,7 +69,7 @@ def edit_setlist(id):
             return {"message": "Setlist not found"}, 404
         form.populate_obj(setlist)
         db.session.commit()
-        return jsonify(setlist.to_dict_detail())
+        return jsonify(setlist.to_dict())
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -106,9 +107,8 @@ def setlist_add_prop(setlist_id, prop_id):
     db.session.commit()
     return jsonify(setlist.to_dict())
 
+
 # REMOVE PROP FROM SETLIST
-
-
 @setlist_routes.route('/<int:setlist_id>/props/<int:prop_id>', methods=['DELETE'])
 @login_required
 def setlist_remove_prop(setlist_id, prop_id):

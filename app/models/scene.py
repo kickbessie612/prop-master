@@ -37,5 +37,6 @@ class Scene(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'image': self.image
+            'image': self.image,
+            'props': [prop.to_dict() for prop in self.props]
         }

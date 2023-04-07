@@ -88,11 +88,7 @@ class Prop(db.Model):
             'availability': self.availability,
             'image': self.image,
             'category_id': self.category_id,
-            'prophouse_id': self.prophouse_id
+            'prophouse_id': self.prophouse_id,
+            'category': self.category.to_dict(),
+            'prophouse': self.prophouse.to_dict()
         }
-
-    def to_dict_detail(self):
-        dict = self.to_dict()
-        dict['category'] = self.category.to_dict()
-        dict['prophouse'] = self.prophouse.to_dict()
-        return dict

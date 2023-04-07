@@ -1,8 +1,8 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, request, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
-from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_wtf.csrf import generate_csrf
 from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
@@ -11,6 +11,8 @@ from .api.prop_routes import prop_routes
 from .api.category_routes import category_routes
 from .api.setlist_routes import setlist_routes
 from .api.prophouse_routes import prophouse_routes
+from .api.movie_routes import movie_routes
+from .api.scene_routes import scene_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,7 +38,8 @@ app.register_blueprint(prop_routes, url_prefix='/api/props')
 app.register_blueprint(setlist_routes, url_prefix='/api/setlists')
 app.register_blueprint(category_routes, url_prefix='/api/categories')
 app.register_blueprint(prophouse_routes, url_prefix='/api/prophouses')
-# app.register_blueprint(movie_bp, url_prefix='/api/movies')
+app.register_blueprint(movie_routes, url_prefix='/api/movies')
+app.register_blueprint(scene_routes, url_prefix='/api/scenes')
 
 db.init_app(app)
 Migrate(app, db)

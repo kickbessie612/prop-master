@@ -21,7 +21,7 @@ def get_all_props():
     if search:
         props = props.filter(Prop.name.ilike(f'%{search}%'))
     props = props.all()
-    return [prop.to_dict_detail() for prop in props]
+    return [prop.to_dict() for prop in props]
 
 
 # GET PROP BY ID
@@ -30,12 +30,11 @@ def get_prop(id):
     """
     Query for a prop by id and returns that prop in a dictionary
     """
-    prop = Prop.query.options(joinedload(
-        Prop.category), joinedload(Prop.prophouse)).get(id)
+    prop = Prop.query.get(id)
     if prop:
         setlists = Setlist.query.join(Setlist.props).filter(
             Prop.id == id, Setlist.user_id == current_user.id).all()
-        dict = prop.to_dict_detail()
+        dict = prop.to_dict()
         dict['setlists'] = [setlist.to_dict() for setlist in setlists]
         return jsonify(dict)
     else:
@@ -62,7 +61,7 @@ def create_prop():
         db.session.commit()
         # TODO: fix query with joinedloads later
         return jsonify(
-            new_prop.to_dict_detail()
+            new_prop.to_dict()
         )
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -79,15 +78,14 @@ def edit_prop(id):
     form = PropForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        prop = Prop.query.options(joinedload(
-            Prop.category), joinedload(Prop.prophouse)).get(id)
+        prop = Prop.query.get(id)
         # TODO: Check that prop belongs to a prophouse current_user manages
         if not prop:
             return {"message": "Prop not found"}, 404
 
         form.populate_obj(prop)
         db.session.commit()
-        return jsonify(prop.to_dict_detail())
+        return jsonify(prop.to_dict())
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

@@ -21,5 +21,6 @@ class Movie(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'name': self.name
+            'name': self.name,
+            'scenes': [scene.to_dict() for scene in self.scenes]
         }
