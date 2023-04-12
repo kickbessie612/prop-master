@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField
+from wtforms import IntegerField, StringField
 from wtforms.validators import Optional, NumberRange
 
 
 class ProphouseForm(FlaskForm):
+    embed_map = StringField('Google Map', validators=[
+        Optional()])
     monday_open = IntegerField('Monday Open', validators=[
         Optional(), NumberRange(min=0, max=23)])
     monday_close = IntegerField('Monday Close', validators=[

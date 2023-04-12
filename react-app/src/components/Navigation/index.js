@@ -12,9 +12,9 @@ function Navigation({ isLoaded }) {
       <NavLink exact to='/'>
         <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop Master
       </NavLink>
-      <NavLink exact to='/movies'>
+      {/* <NavLink exact to='/movies'>
         Movies
-      </NavLink>
+      </NavLink> */}
       <NavLink exact to='/prophouses'>
         Prophouses
       </NavLink>

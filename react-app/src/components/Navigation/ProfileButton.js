@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout, login } from '../../store/session';
-import OpenModalButton from '../OpenModalButton';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
+import { Link } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -63,17 +61,12 @@ function ProfileButton({ user }) {
           <>
             <button onClick={handleDresserLogin}>Demo Dresser</button>
             <button onClick={handleManagerLogin}>Demo Manager</button>
-            <OpenModalButton
-              buttonText='Log In'
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText='Sign Up'
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <Link to='/login'>
+              <button>Log in</button>
+            </Link>
+            <Link to='/signup'>
+              <button>Sign Up</button>
+            </Link>
           </>
         )}
       </ul>

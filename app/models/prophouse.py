@@ -23,6 +23,7 @@ class Prophouse(db.Model):
     instagram = db.Column(db.String(255), nullable=True)
     yelp = db.Column(db.String(255), nullable=True)
     pinterest = db.Column(db.String(255), nullable=True)
+    embed_map = db.Column(db.String(255), nullable=True)
     monday_open = db.Column(db.Integer, nullable=True)
     monday_close = db.Column(db.Integer, nullable=True)
     tuesday_open = db.Column(db.Integer, nullable=True)
@@ -59,6 +60,7 @@ class Prophouse(db.Model):
             'logo': self.logo,
             'lat': self.lat,
             'lng': self.lng,
+            'embed_map': self.embed_map,
             'monday_open': self.monday_open,
             'monday_close': self.monday_close,
             'tuesday_open': self.tuesday_open,
