@@ -61,12 +61,6 @@ function ProfileButton({ user }) {
           <>
             <button onClick={handleDresserLogin}>Demo Dresser</button>
             <button onClick={handleManagerLogin}>Demo Manager</button>
-            <Link to='/login'>
-              <button>Log in</button>
-            </Link>
-            <Link to='/signup'>
-              <button>Sign Up</button>
-            </Link>
           </>
         )}
       </ul>

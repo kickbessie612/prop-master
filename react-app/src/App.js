@@ -27,7 +27,6 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path='/login'>
@@ -36,38 +35,41 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route path='/props/:propId/edit'>
-            <EditPropForm />
-          </Route>
-          <Route path='/props/new'>
-            <CreatePropForm />
-          </Route>
-          <Route path='/props/:propId'>
-            <PropShow />
-          </Route>
-          <Route path='/props'>
-            <PropIndex />
-          </Route>
-          <Route path='/setlists/:setlistId/edit'>
-            <EditSetlistForm />
-          </Route>
-          <Route path='/setlists/new'>
-            <CreateSetlistForm />
-          </Route>
-          <Route path='/setlists/:setlistId'>
-            <SetlistShow />
-          </Route>
-          <Route path='/setlists'>
-            <SetlistIndex />
-          </Route>
-          <Route path='/prophouses/:prophouseId/edit'>
-            <EditProphouseForm />
-          </Route>
-          <Route path='/prophouses/:prophouseId'>
-            <ProphouseShow />
-          </Route>
-          <Route path='/prophouses'>
-            <ProphouseIndex />
+          <Route path='/'>
+            <Navigation isLoaded={isLoaded} />
+            <Route path='/props/:propId/edit'>
+              <EditPropForm />
+            </Route>
+            <Route path='/props/new'>
+              <CreatePropForm />
+            </Route>
+            <Route path='/props/:propId'>
+              <PropShow />
+            </Route>
+            <Route path='/props'>
+              <PropIndex />
+            </Route>
+            <Route path='/setlists/:setlistId/edit'>
+              <EditSetlistForm />
+            </Route>
+            <Route path='/setlists/new'>
+              <CreateSetlistForm />
+            </Route>
+            <Route path='/setlists/:setlistId'>
+              <SetlistShow />
+            </Route>
+            <Route path='/setlists'>
+              <SetlistIndex />
+            </Route>
+            <Route path='/prophouses/:prophouseId/edit'>
+              <EditProphouseForm />
+            </Route>
+            <Route path='/prophouses/:prophouseId'>
+              <ProphouseShow />
+            </Route>
+            <Route path='/prophouses'>
+              <ProphouseIndex />
+            </Route>
           </Route>
         </Switch>
       )}

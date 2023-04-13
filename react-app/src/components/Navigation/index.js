@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -12,9 +12,6 @@ function Navigation({ isLoaded }) {
       <NavLink exact to='/'>
         <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop Master
       </NavLink>
-      {/* <NavLink exact to='/movies'>
-        Movies
-      </NavLink> */}
       <NavLink exact to='/prophouses'>
         Prophouses
       </NavLink>
@@ -26,6 +23,17 @@ function Navigation({ isLoaded }) {
         <NavLink exact to='/setlists'>
           Setlists
         </NavLink>
+      )}
+
+      {!sessionUser && (
+        <>
+          <Link to='/login'>
+            <button>Log in</button>
+          </Link>
+          <Link to='/signup'>
+            <button>Sign Up</button>
+          </Link>
+        </>
       )}
 
       {isLoaded && (
