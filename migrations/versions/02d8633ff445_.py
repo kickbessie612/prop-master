@@ -42,8 +42,7 @@ def upgrade():
                     sa.Column('yelp', sa.String(length=255), nullable=True),
                     sa.Column('pinterest', sa.String(
                         length=255), nullable=True),
-                    sa.Column('embed_map', sa.String(
-                        length=255), nullable=True),
+                    sa.Column('embed_map', sa.Text(), nullable=True),
                     sa.Column('monday_open', sa.Integer(), nullable=True),
                     sa.Column('monday_close', sa.Integer(), nullable=True),
                     sa.Column('tuesday_open', sa.Integer(), nullable=True),

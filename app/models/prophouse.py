@@ -23,7 +23,7 @@ class Prophouse(db.Model):
     instagram = db.Column(db.String(255), nullable=True)
     yelp = db.Column(db.String(255), nullable=True)
     pinterest = db.Column(db.String(255), nullable=True)
-    embed_map = db.Column(db.String(255), nullable=True)
+    embed_map = db.Column(db.Text, nullable=True)
     monday_open = db.Column(db.Integer, nullable=True)
     monday_close = db.Column(db.Integer, nullable=True)
     tuesday_open = db.Column(db.Integer, nullable=True)
