@@ -1,78 +1,89 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { signUp } from "../../store/session";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Link } from 'react-router-dom';
+import { signUp } from '../../store/session';
 import './SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const sessionUser = useSelector(state => state.session.user);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to='/' />;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
-        if (data) {
-          setErrors(data)
-        }
+      const data = await dispatch(signUp(username, email, password));
+      if (data) {
+        setErrors(data);
+      }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors([
+        'Confirm Password field must be the same as the Password field'
+      ]);
     }
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
+    <div className='signup-page-container'>
+      <div className='signup-content'>
+        <div className='logo'>
+          <Link exact to='/'>
+            <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop
+            Master
+          </Link>
+        </div>
+
+        <form className='signup-form' onSubmit={handleSubmit}>
+          <div className='signup-title'>Sign Up to Prop Master</div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
           <input
-            type="text"
+            type='text'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder='Email'
+            onChange={e => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Username
           <input
-            type="text"
+            type='text'
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder='Username'
+            onChange={e => setUsername(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
           <input
-            type="password"
+            type='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder='Password'
+            onChange={e => setPassword(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Confirm Password
           <input
-            type="password"
+            type='password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder='Confirm Password'
+            onChange={e => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
+          <div className='signup-button-container'>
+            <button>Sign Up</button>
+          </div>
+        </form>
+        <div>
+          Have an account? &nbsp;<Link to='/login'>Log In</Link>
+        </div>
+      </div>
+      <div className='signup-image-container'></div>
+    </div>
   );
 }
 

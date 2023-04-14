@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProphouses } from '../../store/prophouses';
-import { NavLink } from 'react-router-dom';
 import ProphouseIndexItem from './ProphouseIndexItem';
 import './ProphouseIndex.css';
 

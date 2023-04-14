@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout, login } from '../../store/session';
-import { Link } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,7 +40,6 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
