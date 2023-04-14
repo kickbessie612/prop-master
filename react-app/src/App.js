@@ -18,6 +18,8 @@ import ProphouseShow from './components/prophouses/ProphouseShow';
 import EditProphouseForm from './components/prophouses/EditProphouseForm';
 import ProphouseIndex from './components/prophouses/ProphouseIndex';
 
+import Home from './components/Home';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,6 +39,9 @@ function App() {
           </Route>
           <Route path='/'>
             <Navigation isLoaded={isLoaded} />
+            <Route exact path='/'>
+              <Home />
+            </Route>
             <Route path='/props/:propId/edit'>
               <EditPropForm />
             </Route>
