@@ -1,17 +1,16 @@
 import './Home.css';
+import Navigation from '../Navigation';
 
 const Home = () => {
   return (
-    <div className='full-screen home'>
-      <div className='home-bg'></div>
-      <div className='container'>
-        <div className='home-text'>
-          <h2 className='home-welcome'>Welcome to the </h2>
-          <h1 className='home-title'>RETAPPD</h1>
-          <div className='home-description'>
-            a new way to socially share the brew you're currently enjoying, as
-            well as where you're enjoying it, with your friends!{' '}
-          </div>
+    <div className='home'>
+      <Navigation isLoaded />
+      <div className='home-text'>
+        <div className='home-user'>PROPHOUSE MANAGER & SET DESIGNER </div>
+        <div className='home-title'>PROP MASTER</div>
+        <div className='home-description'>
+          a new way to share the project you're involved, as well as create your
+          setlist for your next project
         </div>
       </div>
     </div>

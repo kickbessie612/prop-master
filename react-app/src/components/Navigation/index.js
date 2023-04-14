@@ -9,35 +9,36 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='navbar'>
-      <NavLink className='navbar-logo' exact to='/'>
+      <Link className='navbar-logo' exact to='/'>
         <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop Master
-      </NavLink>
-
-      <NavLink exact to='/prophouses'>
-        Prophouses
-      </NavLink>
-      <NavLink exact to='/props'>
-        Props
-      </NavLink>
-
-      {sessionUser && !sessionUser.is_manager && (
-        <NavLink exact to='/setlists'>
-          Setlists
+      </Link>
+      <div className='navbar-links'>
+        <NavLink exact to='/prophouses'>
+          Prophouses
         </NavLink>
-      )}
+        <NavLink exact to='/props'>
+          Props
+        </NavLink>
 
-      {!sessionUser && (
-        <>
-          <Link to='/login'>Log in</Link>
-          <Link to='/signup'>Sign Up</Link>
-        </>
-      )}
+        {sessionUser && !sessionUser.is_manager && (
+          <NavLink exact to='/setlists'>
+            Setlists
+          </NavLink>
+        )}
 
-      {isLoaded && (
-        <div className='profile-button'>
-          <ProfileButton user={sessionUser} />
-        </div>
-      )}
+        {!sessionUser && (
+          <>
+            <Link to='/login'>Log in</Link>
+            <Link to='/signup'>Sign Up</Link>
+          </>
+        )}
+
+        {isLoaded && (
+          <div className='profile-button'>
+            <ProfileButton user={sessionUser} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

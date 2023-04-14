@@ -2,18 +2,13 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-html {
-  height: 100%;
-  font-size: 14px;
 }
 
 body {
-  height: 100%;
+  font-size: 14px;
   background-color: #f2f0e3;
   color: #20282b;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {

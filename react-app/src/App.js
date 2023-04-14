@@ -5,7 +5,6 @@ import SignupFormPage from './components/SignupFormPage';
 import LoginFormPage from './components/LoginFormPage';
 import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
-
 import PropIndex from './components/props/PropIndex';
 import CreatePropForm from './components/props/CreatePropForm';
 import EditPropForm from './components/props/EditPropForm';
@@ -37,11 +36,13 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
+          <Route exact path='/'>
+            <Home />
+          </Route>
           <Route path='/'>
-            <Navigation isLoaded={isLoaded} />
-            <Route exact path='/'>
-              <Home />
-            </Route>
+            <div className='navbar-holder'>
+              <Navigation isLoaded={isLoaded} />
+            </div>
             <Route path='/props/:propId/edit'>
               <EditPropForm />
             </Route>

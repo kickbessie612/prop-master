@@ -1,55 +1,34 @@
-.full-screen {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 .home {
   color: #05283a;
-}
-
-.home-bg {
-  background-image: url('https://uploads-ssl.webflow.com/63237698448063e1a57ddaef/632622fd12d9db9318ab1fba_home-page-hero.jpg');
+  background-image: url('./bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-
-  position: absolute;
   height: 100vh;
-  width: 100%;
-  top: -190px;
-  left: 0;
-  z-index: -1;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
-.container {
-  width: 300px;
-  margin-left: 500px;
-  margin-top: 200px;
-  position: relative;
+.home-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 340px;
+  color: #f2f0e3;
+  align-items: center;
 }
 
-.color-block {
-  height: 200px;
-  width: 80px;
-  top: -20px;
-  left: -20px;
-  position: absolute;
-  background-color: #5ca33e;
-  z-index: -1;
-}
-
-.home-welcome {
-  font: 32px;
-  font-weight: 600;
+.home-user {
+  font-size: 12px;
+  font-weight: 300;
 }
 
 .home-title {
-  font: 72px;
-  margin-top: 10px;
+  font-size: 120px;
+  margin-top: 20px;
 }
 
 .home-description {
-  font: 18px;
-  font-weight: 500;
-  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 20px;
+  width: 400px;
 }
