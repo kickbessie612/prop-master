@@ -35,15 +35,6 @@ const ProphouseIndex = () => {
 
   return (
     <>
-      <div>
-        <input
-          type='text'
-          value={search}
-          onChange={e => submitSearch(e.target.value)}
-        />
-        <button onClick={resetSearch}>Reset</button>
-      </div>
-
       {prophouses.length > 0 && (
         <div>
           {prophouses.map(prophouse => (
