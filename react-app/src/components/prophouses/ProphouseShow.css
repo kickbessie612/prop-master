@@ -29,6 +29,14 @@
   color: #20282b;
 }
 
+.prophouse-show-add-prop-button {
+  position: absolute;
+  top: 480px;
+  left: 230px;
+  background-color: #f2f0e3;
+  color: #20282b;
+}
+
 .prophouse-show-introduction-holder {
   display: flex;
   margin: 60px 160px 80px 160px;

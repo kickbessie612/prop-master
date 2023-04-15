@@ -38,52 +38,51 @@ const PropIndex = () => {
   // };
 
   return (
-    <>
-      <div>
-        {sessionUser && sessionUser.prophouse_id && (
-          <div>
-            <NavLink to='/props/new'>
-              <button>Add Prop</button>
-            </NavLink>
-          </div>
-        )}
-      </div>
-      <div>
-        <input
-          type='text'
-          value={search}
-          placeholder='Search by prop name'
-          onChange={e => submitSearch(e.target.value)}
-        />
-        {/* <button onClick={resetSearch}>Reset</button> */}
-      </div>
-
-      <div className='prop-index-content'>
-        <div className='prop-index-categories'>
-          <div onClick={e => handleCategorySwitch({})}>All</div>
-          {categories
-            .filter(filterByProp('parent_id', null))
-            .sort(sortByProp('name'))
-            .map(category => (
-              <>
-                <div key={category.id}>{category.name}</div>
-                {categories
-                  .filter(filterByProp('parent_id', category.id))
-                  .sort(sortByProp('name'))
-                  .map(subCategory => (
-                    <div
-                      key={subCategory.id}
-                      onClick={e => handleCategorySwitch(subCategory)}
-                    >
-                      &gt;&nbsp;{subCategory.name}
-                    </div>
-                  ))}
-              </>
-            ))}
+    <div className='prop-list-container'>
+      <div className='prop-index-categories'>
+        <div
+          className='prop-index-subcategory'
+          onClick={e => handleCategorySwitch({})}
+        >
+          All
         </div>
-        <div className='prop-index-props'>
+        {categories
+          .filter(filterByProp('parent_id', null))
+          .sort(sortByProp('name'))
+          .map(category => (
+            <>
+              <div className='prop-index-category' key={category.id}>
+                {category.name}
+              </div>
+              {categories
+                .filter(filterByProp('parent_id', category.id))
+                .sort(sortByProp('name'))
+                .map(subCategory => (
+                  <div
+                    className='prop-index-subcategory'
+                    key={subCategory.id}
+                    onClick={e => handleCategorySwitch(subCategory)}
+                  >
+                    &gt;&nbsp;{subCategory.name}
+                  </div>
+                ))}
+            </>
+          ))}
+      </div>
+      <div className='prop-list-main'>
+        <div className='prop-list-search-bar'>
+          <input
+            type='text'
+            value={search}
+            placeholder='Search by prop name'
+            onChange={e => submitSearch(e.target.value)}
+          />
+          {/* <button onClick={resetSearch}>Reset</button> */}
+        </div>
+
+        <div>
           {props.length > 0 && (
-            <div>
+            <div className='prop-index-props'>
               {props
                 .filter(prop =>
                   currentCategory.id
@@ -97,7 +96,7 @@ const PropIndex = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

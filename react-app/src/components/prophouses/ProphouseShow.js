@@ -49,6 +49,17 @@ const ProphouseShow = () => {
             </div>
           )}
         </div>
+        <div>
+          {sessionUser && sessionUser.prophouse_id && (
+            <div>
+              <Link to='/props/new'>
+                <button className='prophouse-show-add-prop-button'>
+                  Add Prop
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
       <div className='prophouse-show-introduction-holder'>
         <div className='prophouse-show-title'>ABOUT THE PROPHOUSE</div>
