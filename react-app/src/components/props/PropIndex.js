@@ -41,9 +41,10 @@ const PropIndex = () => {
         <input
           type='text'
           value={search}
+          placeholder='Search by prop name'
           onChange={e => submitSearch(e.target.value)}
         />
-        <button onClick={resetSearch}>Reset</button>
+        {/* <button onClick={resetSearch}>Reset</button> */}
       </div>
       <div>
         {sessionUser.prophouse_id && (
