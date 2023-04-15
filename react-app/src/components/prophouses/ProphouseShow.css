@@ -1,0 +1,82 @@
+.prophouse-show-name {
+  position: absolute;
+  color: #f2f0e3;
+  font-size: 60px;
+  font-family: 'Lato';
+  top: 300px;
+  left: 160px;
+}
+
+.prophouse-show-image-holder {
+  position: relative;
+}
+
+.prophouse-show-description {
+  position: absolute;
+  color: #f2f0e3;
+  font-size: 16px;
+  font-family: 'Lato';
+  top: 400px;
+  left: 160px;
+  width: 400px;
+}
+.prophouse-show-introduction-holder {
+  display: flex;
+
+  margin: 60px 160px 80px 160px;
+}
+
+.prophouse-show-title {
+  width: 50%;
+  font-weight: 600;
+}
+
+.prophouse-show-introduction {
+  width: 50%;
+}
+
+.prophouse-show-info-holder {
+  font-family: 'Lato';
+  display: flex;
+  background-color: #20282b;
+  color: #f2f0e3;
+}
+
+.prophouse-show-info-left {
+  width: 50%;
+  margin: 60px 0px 80px 70px;
+  text-align: center;
+}
+
+.prophouse-show-info-name {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.prophouse-show-info-address {
+  margin-bottom: 10px;
+}
+
+.prophouse-show-info-hours {
+  margin-bottom: 10px;
+}
+
+.prophouse-show-info-map {
+  width: 50%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.prophouse-show-social {
+  margin-top: 20px;
+}
+
+.prophouse-show-social i {
+  color: #f2f0e3;
+  font-size: 25px;
+}
+
+.prophouse-show-social a {
+  margin-left: 10px;
+  margin-right: 10px;
+}

@@ -1,0 +1,51 @@
+.prophouse-list {
+  display: flex;
+  justify-content: center;
+}
+
+.prophouse-list-title {
+  width: 220px;
+  margin-top: 40px;
+  font-weight: 600;
+}
+
+.prophouse-index {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 1050px;
+}
+
+.prophouse-item-holder {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 80px;
+}
+
+.prophouse-item-holder > div:not(:first-child) {
+  margin-left: 85px;
+}
+
+.prophouse-index-card {
+  position: relative;
+}
+
+.prophouse-index-card:hover {
+  filter: grayscale(0.9);
+}
+
+.prophouse-index-name {
+  position: absolute;
+  top: 430px;
+  left: 50px;
+  color: #f2f0e3;
+  font-size: 20px;
+}
+
+.prophouse-index-button {
+  position: absolute;
+  top: 470px;
+  left: 50px;
+  background-color: #f2f0e3;
+  color: #20282b;
+}

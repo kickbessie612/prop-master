@@ -16,6 +16,8 @@ class Prophouse(db.Model):
     zipcode = db.Column(db.Integer)
     phone = db.Column(db.String)
     logo = db.Column(db.String(255), nullable=True)
+    image = db.Column(db.Text, nullable=True)
+    introduction = db.Column(db.Text, nullable=True)
     lat = db.Column(db.Float, nullable=True)
     lng = db.Column(db.Float, nullable=True)
     facebook = db.Column(db.String(255), nullable=True)
@@ -58,6 +60,8 @@ class Prophouse(db.Model):
             'zipcode': self.zipcode,
             'phone': self.phone,
             'logo': self.logo,
+            'image': self.image,
+            'introduction': self.introduction,
             'lat': self.lat,
             'lng': self.lng,
             'embed_map': self.embed_map,
@@ -75,4 +79,9 @@ class Prophouse(db.Model):
             'saturday_close': self.saturday_close,
             'sunday_open': self.sunday_open,
             'sunday_close': self.sunday_close,
+            'twitter': self.twitter,
+            'pinterest': self.pinterest,
+            'facebook': self.facebook,
+            'instagram': self.instagram,
+            'yelp': self.yelp
         }

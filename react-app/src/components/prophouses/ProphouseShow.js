@@ -25,45 +25,112 @@ const ProphouseShow = () => {
 
   return (
     <div>
-      <h2>{prophouse.name}</h2>
-      <div dangerouslySetInnerHTML={{ __html: prophouse.embed_map }}></div>
+      <div className='prophouse-show-image-holder'>
+        <div
+          style={{
+            height: 550,
+            backgroundSize: 'cover',
+            backgroundPositionX: 'center',
+            backgroundRepeat: 'no-repeat',
+            filter: 'brightness(0.5)',
+            backgroundImage: `url(${prophouse.image})`
+          }}
+        ></div>
+        <div className='prophouse-show-name'>{prophouse.name}</div>
+        <div className='prophouse-show-description'>
+          {prophouse.description}
+        </div>
+      </div>
+      <div className='prophouse-show-introduction-holder'>
+        <div className='prophouse-show-title'>ABOUT THE PROPHOUSE</div>
+        <div
+          className='prophouse-show-introduction'
+          dangerouslySetInnerHTML={{ __html: prophouse.introduction }}
+        ></div>
+      </div>
 
-      {prophouse.monday_open && prophouse.monday_close && (
-        <div>
-          Mon: {prophouse.monday_open} am - {prophouse.monday_close - 12} pm
+      <div className='prophouse-show-info-holder'>
+        <div className='prophouse-show-info-left'>
+          <div className='prophouse-show-info-name'>{prophouse.name}</div>
+          <div className='prophouse-show-info-address'>{prophouse.address}</div>
+          <div className='prophouse-show-info-hours'>
+            {prophouse.monday_open && prophouse.monday_close && (
+              <div>
+                Mon: {prophouse.monday_open} am - {prophouse.monday_close - 12}{' '}
+                pm
+              </div>
+            )}
+            {prophouse.tuesday_open && prophouse.tuesday_close && (
+              <div>
+                Tue: {prophouse.tuesday_open} am -{' '}
+                {prophouse.tuesday_close - 12} pm
+              </div>
+            )}
+            {prophouse.wednesday_open && prophouse.wednesday_close && (
+              <div>
+                Wed: {prophouse.wednesday_open} am -{' '}
+                {prophouse.wednesday_close - 12} pm
+              </div>
+            )}
+            {prophouse.thursday_open && prophouse.thursday_close && (
+              <div>
+                Thu: {prophouse.thursday_open} am -{' '}
+                {prophouse.thursday_close - 12} pm
+              </div>
+            )}
+            {prophouse.friday_open && prophouse.friday_close && (
+              <div>
+                Fri: {prophouse.friday_open} am - {prophouse.friday_close - 12}{' '}
+                pm
+              </div>
+            )}
+            {prophouse.saturday_open && prophouse.saturday_close && (
+              <div>
+                Sat: {prophouse.saturday_open} am -{' '}
+                {prophouse.saturday_close - 12} pm
+              </div>
+            )}
+            {prophouse.sunday_open && prophouse.sunday_close && (
+              <div>
+                Sun: {prophouse.sunday_open} am - {prophouse.sunday_close - 12}{' '}
+                pm
+              </div>
+            )}
+          </div>
+          <div className='prophouse-show-info-phone'>{prophouse.phone}</div>
+          <div className='prophouse-show-social'>
+            {prophouse.twitter && (
+              <a href={prophouse.twitter}>
+                <i className='fa-brands fa-square-twitter'></i>
+              </a>
+            )}
+            {prophouse.facebook && (
+              <a href={prophouse.facebook}>
+                <i className='fa-brands fa-square-facebook'></i>
+              </a>
+            )}
+            {prophouse.instagram && (
+              <a href={prophouse.instagram}>
+                <i className='fa-brands fa-square-instagram'></i>
+              </a>
+            )}
+            {prophouse.yelp && (
+              <a href={prophouse.yelp}>
+                <i className='fa-brands fa-y-combinator'></i>
+              </a>
+            )}
+            {prophouse.pinterest && (
+              <a href={prophouse.pinterest}>
+                <i className='fa-brands fa-square-pinterest'></i>
+              </a>
+            )}
+          </div>
         </div>
-      )}
-      {prophouse.tuesday_open && prophouse.tuesday_close && (
-        <div>
-          Tue: {prophouse.tuesday_open} am - {prophouse.tuesday_close - 12} pm
-        </div>
-      )}
-      {prophouse.wednesday_open && prophouse.wednesday_close && (
-        <div>
-          Wed: {prophouse.wednesday_open} am - {prophouse.wednesday_close - 12}{' '}
-          pm
-        </div>
-      )}
-      {prophouse.thursday_open && prophouse.thursday_close && (
-        <div>
-          Thu: {prophouse.thursday_open} am - {prophouse.thursday_close - 12} pm
-        </div>
-      )}
-      {prophouse.friday_open && prophouse.friday_close && (
-        <div>
-          Fri: {prophouse.friday_open} am - {prophouse.friday_close - 12} pm
-        </div>
-      )}
-      {prophouse.saturday_open && prophouse.saturday_close && (
-        <div>
-          Sat: {prophouse.saturday_open} am - {prophouse.saturday_close - 12} pm
-        </div>
-      )}
-      {prophouse.sunday_open && prophouse.sunday_close && (
-        <div>
-          Sun: {prophouse.sunday_open} am - {prophouse.sunday_close - 12} pm
-        </div>
-      )}
+        <div
+          className='prophouse-show-info-map'
+          dangerouslySetInnerHTML={{ __html: prophouse.embed_map }}
+        ></div>
+      </div>
 
       {sessionUser && prophouse.id === sessionUser.prophouse_id && (
         <div>

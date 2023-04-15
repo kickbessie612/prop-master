@@ -52,7 +52,7 @@ function App() {
             <Route path='/props/:propId'>
               <PropShow />
             </Route>
-            <Route path='/props'>
+            <Route exact path='/props'>
               <PropIndex />
             </Route>
             <Route path='/setlists/:setlistId/edit'>
@@ -73,7 +73,7 @@ function App() {
             <Route path='/prophouses/:prophouseId'>
               <ProphouseShow />
             </Route>
-            <Route path='/prophouses'>
+            <Route exact path='/prophouses'>
               <ProphouseIndex />
             </Route>
           </Route>

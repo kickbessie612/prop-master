@@ -17,31 +17,24 @@ const ProphouseIndex = () => {
     }
   );
 
-  const [search, setSearch] = useState('');
-
   useEffect(() => {
     dispatch(fetchProphouses());
   }, [dispatch]);
 
-  const submitSearch = term => {
-    setSearch(term);
-    dispatch(fetchProphouses(term.toLowerCase()));
-  };
-
-  const resetSearch = () => {
-    setSearch('');
-    dispatch(fetchProphouses());
-  };
-
   return (
     <>
-      {prophouses.length > 0 && (
-        <div>
-          {prophouses.map(prophouse => (
-            <ProphouseIndexItem prophouse={prophouse} key={prophouse.id} />
-          ))}
+      <div className='prophouse-list'>
+        <div className='prophouse-list-title'>PROPHOUSES</div>
+        <div className='prophouse-index'>
+          {prophouses.length > 0 && (
+            <div className='prophouse-item-holder'>
+              {prophouses.map(prophouse => (
+                <ProphouseIndexItem prophouse={prophouse} key={prophouse.id} />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };
