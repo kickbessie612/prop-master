@@ -7,6 +7,7 @@ import './PropIndex.css';
 
 const PropIndex = () => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const props = useSelector(state => Object.values(state.props)).sort(
     (a, b) => {
       if (a.id < b.id) {
@@ -45,10 +46,15 @@ const PropIndex = () => {
         <button onClick={resetSearch}>Reset</button>
       </div>
       <div>
-        <NavLink to='/props/new'>
-          <button>Add Prop</button>
-        </NavLink>
+        {sessionUser.prophouse_id && (
+          <div>
+            <NavLink to='/props/new'>
+              <button>Add Prop</button>
+            </NavLink>
+          </div>
+        )}
       </div>
+
       {props.length > 0 && (
         <div>
           {props.map(prop => (
