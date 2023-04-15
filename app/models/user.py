@@ -25,8 +25,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40),  unique=True)
     email = db.Column(db.String(255),  unique=True)
     hashed_password = db.Column(db.String(255))
-    first_name = db.Column(db.String(255))
-    last_name = db.Column(db.String(255))
+    first_name = db.Column(db.String(255), nullable=True)
+    last_name = db.Column(db.String(255), nullable=True)
     is_manager = db.Column(db.Boolean)
 
     # 1 prophouse can have many users(as manager)
@@ -57,8 +57,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
             'is_manager': self.is_manager,
             'prophouse_id': self.prophouse_id
         }

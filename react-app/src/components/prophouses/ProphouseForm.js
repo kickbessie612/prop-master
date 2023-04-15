@@ -70,7 +70,7 @@ const ProphouseForm = ({ prophouse }) => {
   return (
     <div>
       <div>
-        <h1>Edit Prophouse</h1>
+        <div>Edit Prophouse</div>
       </div>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -78,11 +78,12 @@ const ProphouseForm = ({ prophouse }) => {
             <li key={idx}>{error}</li>
           ))}
         </ul>
+
         <div>
           Monday Open
           <input
             type='number'
-            placeholder='Monday Open'
+            placeholder='Monday Open Time (24h)'
             value={monday_open}
             onChange={e => setMondayOpen(e.target.value)}
           />
