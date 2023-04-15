@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSetlists } from '../../store/setlists';
@@ -7,10 +7,12 @@ import './SetlistIndex.css';
 
 const SetlistIndex = () => {
   const dispatch = useDispatch();
-  const setlists = useSelector(state => Object.values(state.setlists));
 
-  useEffect(() => {
-    dispatch(fetchSetlists());
+  const [setlists, setSetlists] = useState([]);
+  const [currentSetlistIndex, setCurrentSetlistIndex] = useState(0);
+
+  useEffect(async () => {
+    setSetlists(await dispatch(fetchSetlists()));
   }, [dispatch]);
 
   if (setlists.length === 0) {
@@ -25,11 +27,31 @@ const SetlistIndex = () => {
           <button>Create a Setlist</button>
         </Link>
       </div>
-      {setlists.map(setlist => (
-        <Link key={setlist.id} to={`/setlists/${setlist.id}`}>
-          <div>{setlist.name}</div>
-        </Link>
-      ))}
+      <div className='setlist-index-content'>
+        <div className='setlist-name-holder'>
+          {setlists.map((setlist, index) => (
+            <div
+              className={`setlist-index-item${
+                index === currentSetlistIndex ? ' active' : ''
+              }`}
+              key={setlist.id}
+              onClick={e => setCurrentSetlistIndex(index)}
+            >
+              {setlist.name}
+            </div>
+          ))}
+        </div>
+        <div className='setlist-prop-list'>
+          {setlists.length > 0 &&
+            setlists[currentSetlistIndex].props.length > 0 &&
+            setlists[currentSetlistIndex].props.map(prop => (
+              <div key={prop.id}>
+                <div>{prop.name}</div>
+                <img src={prop.image} />
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
