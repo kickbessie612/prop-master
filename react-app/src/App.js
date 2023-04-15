@@ -70,7 +70,7 @@ function App() {
             <Route path='/prophouses/:prophouseId/edit'>
               <EditProphouseForm />
             </Route>
-            <Route path='/prophouses/:prophouseId'>
+            <Route exact path='/prophouses/:prophouseId'>
               <ProphouseShow />
             </Route>
             <Route exact path='/prophouses'>

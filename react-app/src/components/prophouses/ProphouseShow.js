@@ -40,6 +40,15 @@ const ProphouseShow = () => {
         <div className='prophouse-show-description'>
           {prophouse.description}
         </div>
+        <div>
+          {sessionUser && prophouse.id === sessionUser.prophouse_id && (
+            <div>
+              <button className='prophouse-show-edit-button'>
+                <Link to={`/prophouses/${prophouse.id}/edit`}>Edit</Link>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <div className='prophouse-show-introduction-holder'>
         <div className='prophouse-show-title'>ABOUT THE PROPHOUSE</div>
@@ -131,14 +140,6 @@ const ProphouseShow = () => {
           dangerouslySetInnerHTML={{ __html: prophouse.embed_map }}
         ></div>
       </div>
-
-      {sessionUser && prophouse.id === sessionUser.prophouse_id && (
-        <div>
-          <button>
-            <Link to={`/prophouses/${prophouse.id}/edit`}>Edit</Link>
-          </button>
-        </div>
-      )}
     </div>
   );
 };
