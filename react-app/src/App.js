@@ -64,7 +64,7 @@ function App() {
             <Route path='/setlists/:setlistId'>
               <SetlistShow />
             </Route>
-            <Route path='/setlists'>
+            <Route exact path='/setlists'>
               <SetlistIndex />
             </Route>
             <Route path='/prophouses/:prophouseId/edit'>
