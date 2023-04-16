@@ -11,8 +11,8 @@
 .propshow-main {
   background-color: #f2f0e3;
   display: flex;
-  width: 75%;
   margin: auto;
+  width: 75%;
   position: relative;
 }
 
@@ -28,13 +28,9 @@
   color: #20282b;
 }
 
-.propshow-image {
-  width: 300px;
-}
-
 .propshow-text {
-  margin-top: 60px;
-  margin-left: 60px;
+  padding: 60px;
+  flex-grow: 1;
 }
 
 .propshow-name {
@@ -53,8 +49,6 @@
 }
 
 .propshow-setlist {
-  margin-top: 30px;
-  margin-left: 200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;

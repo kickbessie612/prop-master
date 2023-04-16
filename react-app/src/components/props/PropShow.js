@@ -77,8 +77,17 @@ const PropShow = () => {
               Back to all props
             </button>
           </Link>
-          <img className='propshow-image' src={prop.image} alt={prop.name} />
 
+          <div
+            style={{
+              width: 400,
+              height: 500,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundImage: `url(${prop.image})`
+            }}
+          ></div>
           <div className='propshow-text'>
             <div className='propshow-name'>{prop.name}</div>
             <div className='propshow-price'>
