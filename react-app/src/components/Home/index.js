@@ -13,6 +13,11 @@ const Home = () => {
           setlist for your next project
         </div>
       </div>
+      <div className='footer'>
+        <a href='https://www.linkedin.com/in/yuan-wang-80613052/'>Linkedin</a>
+        &nbsp;|&nbsp;
+        <a href='https://github.com/kickbessie612'>Github</a>
+      </div>
     </div>
   );
 };

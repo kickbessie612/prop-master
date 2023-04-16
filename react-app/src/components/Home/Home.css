@@ -6,6 +6,7 @@
   height: 100vh;
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
+  position: relative;
 }
 
 .home-text {
@@ -31,4 +32,16 @@
   font-weight: 400;
   margin-top: 20px;
   width: 400px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  left: 700px;
+  color: #f2f0e3;
+}
+
+.footer > a {
+  color: #f2f0e3;
+  padding: 10px;
 }

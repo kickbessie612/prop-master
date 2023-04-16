@@ -27,7 +27,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className='main-content'>
       {isLoaded && (
         <Switch>
           <Route exact path='/login'>
@@ -79,7 +79,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
 
