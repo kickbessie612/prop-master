@@ -37,7 +37,7 @@ Your .env file should look like this:
 ```
 DB_FILE=db/dev.db
 JWT_SECRET=****
-SCHEMA=my_beers_schema
+SCHEMA=prop_master_schema
 FLASK_DEBUG=true
 ```
 
@@ -68,3 +68,20 @@ flask seed all
 6. Run `npm install` in frontend folder (react-app).
 
 7. Run `npm start` in frontend folder.
+
+### Database Schema Design
+
+![prop_master_schema](prop_master_schema.png)
+
+### Screenshots
+
+##### Registration Page
+
+![registration_page]
+
+##### Home Page
+
+![home_page]
+
+[registration_page]: ./registration_page.jpg
+[home_page]: ./home_page.jpg
