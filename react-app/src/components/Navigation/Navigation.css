@@ -1,6 +1,17 @@
 .profile-dropdown {
   position: absolute;
   z-index: 1;
+  padding: 10px;
+}
+
+.profile-dropdown > *:not(:first-child) {
+  margin-top: 10px;
+}
+
+.profile-dropdown > button {
+  background-color: #f2f0e3;
+  color: #20282b;
+  border-radius: 5px;
 }
 
 .hidden {

@@ -10,7 +10,8 @@ function Navigation({ isLoaded }) {
   return (
     <div className='navbar'>
       <Link className='navbar-logo' to='/'>
-        <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop Master
+        <i className='fa-solid fa-film'></i>
+        &nbsp;&nbsp;&nbsp;Prop Master
       </Link>
       <div className='navbar-links'>
         <NavLink exact to='/prophouses'>

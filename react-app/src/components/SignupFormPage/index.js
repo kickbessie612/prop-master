@@ -34,8 +34,7 @@ function SignupFormPage() {
       <div className='signup-content'>
         <div className='logo'>
           <Link exact to='/'>
-            <i className='fa-sharp fa-solid fa-p'></i>&nbsp;&nbsp;&nbsp;Prop
-            Master
+            <i className='fa-solid fa-film'></i>&nbsp;&nbsp;&nbsp;Prop Master
           </Link>
         </div>
 
