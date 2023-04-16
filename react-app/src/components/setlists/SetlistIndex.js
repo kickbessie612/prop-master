@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSetlists } from '../../store/setlists';
+import PropIndexItem from '../props/PropIndexItem';
 
 import './SetlistIndex.css';
 
 const SetlistIndex = () => {
   const dispatch = useDispatch();
-
-  const [setlists, setSetlists] = useState([]);
+  const setlists = useSelector(state => Object.values(state.setlists));
   const [currentSetlistIndex, setCurrentSetlistIndex] = useState(0);
 
-  useEffect(async () => {
-    setSetlists(await dispatch(fetchSetlists()));
+  useEffect(() => {
+    dispatch(fetchSetlists());
   }, [dispatch]);
 
   if (setlists.length === 0) {
@@ -20,35 +20,31 @@ const SetlistIndex = () => {
   }
 
   return (
-    <div className='setlist-index-holder'>
-      <div className='setlist-index-title'>
-        <div>Your Setlists</div>
+    <div className='setlist-index-container'>
+      <div className='setlist-index-create-button-container'>
         <Link to='/setlists/new'>
           <button>Create a Setlist</button>
         </Link>
       </div>
-      <div className='setlist-index-content'>
-        <div className='setlist-name-holder'>
+      <div className='setlist-index-content-container'>
+        <div className='setlist-index-setlists'>
           {setlists.map((setlist, index) => (
             <div
-              className={`setlist-index-item${
+              className={`setlist-index-setlist${
                 index === currentSetlistIndex ? ' active' : ''
               }`}
               key={setlist.id}
-              onClick={e => setCurrentSetlistIndex(index)}
+              onClick={() => setCurrentSetlistIndex(index)}
             >
               {setlist.name}
             </div>
           ))}
         </div>
-        <div className='setlist-prop-list'>
+        <div className='setlist-index-props'>
           {setlists.length > 0 &&
             setlists[currentSetlistIndex].props.length > 0 &&
             setlists[currentSetlistIndex].props.map(prop => (
-              <div key={prop.id}>
-                <div>{prop.name}</div>
-                <img src={prop.image} />
-              </div>
+              <PropIndexItem prop={prop} key={prop.id} />
             ))}
         </div>
       </div>

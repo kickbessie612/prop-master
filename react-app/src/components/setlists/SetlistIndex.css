@@ -1,21 +1,39 @@
-.setlist-index-holder {
-  margin: 80px 160px 80px 200px;
+.setlist-index-container {
+  width: 75%;
+  margin: auto;
 }
 
-.setlist-index-title {
+.setlist-index-create-button-container {
   display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
-.setlist-index-content {
+.setlist-index-content-container {
   display: flex;
+  border-top: solid 1px #20282b;
+  padding: 20px;
 }
 
-/* .setlist-name-holder {
+.setlist-index-setlists {
+  display: flex;
+  flex-direction: column;
 }
 
-.setlist-index-item {
+.setlist-index-setlist {
+  padding: 10px;
+  cursor: pointer;
+}
 
-} */
+.setlist-index-setlist:hover {
+  background-color: #d1d1d1;
+}
 
-/* .setlist-index-content > * {
-} */
+.setlist-index-setlist.active {
+  background-color: #d1d1d1;
+}
+
+.setlist-index-props {
+  display: flex;
+  flex-wrap: wrap;
+}

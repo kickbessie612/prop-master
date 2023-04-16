@@ -38,8 +38,8 @@
 }
 
 .prop-index-item {
-  margin-left: 40px;
-  margin-top: 30px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .prop-item-image {
@@ -60,5 +60,5 @@
 
 .prop-list-search-bar {
   width: 900px;
-  margin-left: 40px;
+  margin-left: 20px;
 }
