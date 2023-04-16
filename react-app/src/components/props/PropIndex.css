@@ -14,11 +14,16 @@
 }
 
 .prop-index-subcategory {
+  cursor: pointer;
   margin-left: 10px;
 }
 
+.prop-index-subcategory.active {
+  background-color: #20282b16;
+}
+
 .prop-index-subcategory:hover {
-  background-color: #20282b41;
+  background-color: #20282b16;
 }
 
 .prop-list-main {

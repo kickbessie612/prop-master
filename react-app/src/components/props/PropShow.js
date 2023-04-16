@@ -8,6 +8,7 @@ import {
   setlistAddProp,
   setlistRemoveProp
 } from '../../store/setlists';
+import { filterByProp, sortByProp } from '../../utils';
 
 import './PropShow.css';
 
@@ -68,64 +69,93 @@ const PropShow = () => {
   );
 
   return (
-    <>
-      <div>
-        <div>
-          <h2>{prop.name}</h2>
+    <div>
+      <div className='propshow-background'>
+        <div className='propshow-main'>
+          <Link className='propshow-back-to-all' to={`/props`}>
+            <button className='propshow-button-back-to-all'>
+              Back to all props
+            </button>
+          </Link>
+          <img className='propshow-image' src={prop.image} alt={prop.name} />
 
-          <div>
-            {prop.color},{prop.material},{prop.description}
-          </div>
-
-          <div>{prop.availability ? 'available' : 'not available'}</div>
-
-          <div>
-            <Link to={`/prophouses/${prop.prophouse.id}`}>
-              {prop.prophouse.name}
-            </Link>
-          </div>
-
-          {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
-            <>
-              <div>
-                <button>
-                  <Link to={`/props/${prop.id}/edit`}>Edit</Link>
-                </button>
-                <button onClick={handleDelete}>Delete</button>
-              </div>
-            </>
-          )}
-          <hr />
-          <div>
-            <img width={300} src={prop.image} alt={prop.name} />
-          </div>
-          <hr />
-          <div>
-            <select onChange={e => handleSetlistSelect(e.target.value)}>
-              <option value=''>Select Setlist</option>
-              {setlists.map(setlist => (
-                <option key={setlist.id} value={setlist.id}>
-                  {setlist.name}
-                </option>
-              ))}
-            </select>
-            <button onClick={handleAddButton}>Add To Setlist</button>
-          </div>
-          {sessionUser && !sessionUser.is_manager && (
-            <div>
-              {prop.setlists.map(setlist => (
-                <div key={setlist.id}>
-                  <Link to={`/setlists/${setlist.id}`}>{setlist.name}</Link>
-                  <button onClick={e => handleRemoveButton(setlist.id)}>
-                    X
-                  </button>
-                </div>
-              ))}
+          <div className='propshow-text'>
+            <div className='propshow-name'>{prop.name}</div>
+            <div className='propshow-price'>
+              Weekly Price: ${prop.weekly_price}.00
             </div>
-          )}
+            <div className='propshow-barcode'>Barcode: {prop.barcode}</div>
+            <div
+              className='propshow-availability'
+              style={{ color: prop.availability ? '#6f985e' : '#cb6346' }}
+            >
+              {prop.availability ? 'available' : 'not available'}
+            </div>
+            <div className='propshow-setlist'>
+              {sessionUser && !sessionUser.is_manager && (
+                <>
+                  <select onChange={e => handleSetlistSelect(e.target.value)}>
+                    <option value=''>Select Setlist</option>
+                    {setlists.map(setlist => (
+                      <option key={setlist.id} value={setlist.id}>
+                        {setlist.name}
+                      </option>
+                    ))}
+                  </select>
+
+                  <button className='propshow-button' onClick={handleAddButton}>
+                    Add To Setlist
+                  </button>
+
+                  {prop.setlists.map(setlist => (
+                    <>
+                      <div key={setlist.id}>
+                        In&nbsp;
+                        <Link to={`/setlists/${setlist.id}`}>
+                          {setlist.name}
+                        </Link>{' '}
+                        setlist
+                      </div>
+                      <button
+                        className='propshow-button'
+                        onClick={e => handleRemoveButton(setlist.id)}
+                      >
+                        Remove
+                      </button>
+                    </>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-    </>
+
+      <div className='propshow-description'>
+        {prop.color && <div>Color: {prop.color}</div>}
+        {prop.material && <div>Material: {prop.material}</div>}
+        {prop.description && <div>Description: {prop.description}</div>}
+      </div>
+      <hr />
+
+      <div className='propshow-prophouse'>
+        <Link to={`/prophouses/${prop.prophouse.id}`}>
+          At{' '}
+          <span className='propshow-prophouse-link'>{prop.prophouse.name}</span>
+        </Link>
+      </div>
+
+      {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
+        <>
+          <div>
+            <button>
+              <Link to={`/props/${prop.id}/edit`}>Edit</Link>
+            </button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

@@ -59,7 +59,9 @@ const PropIndex = () => {
                 .sort(sortByProp('name'))
                 .map(subCategory => (
                   <div
-                    className='prop-index-subcategory'
+                    className={`prop-index-subcategory${
+                      currentCategory.id === subCategory.id ? ' active' : ''
+                    }`}
                     key={subCategory.id}
                     onClick={e => handleCategorySwitch(subCategory)}
                   >

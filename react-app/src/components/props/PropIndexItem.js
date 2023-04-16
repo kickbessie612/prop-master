@@ -5,7 +5,7 @@ const PropIndexItem = ({ prop }) => {
   return (
     <div className='prop-index-item'>
       <Link to={`/props/${prop.id}`}>
-        <div>
+        <div style={{ overflow: 'hidden' }}>
           <img
             className='prop-item-image'
             width={280}
