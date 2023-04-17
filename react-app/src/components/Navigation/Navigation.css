@@ -7,6 +7,7 @@
   row-gap: 10px;
   background-color: #f2f0e3;
   border: 1px solid #20282b;
+  color: #20282b;
 }
 
 .profile-dropdown > *:not(:first-child) {
