@@ -31,14 +31,14 @@ def get_prop(id):
     Query for a prop by id and returns that prop in a dictionary
     """
     prop = Prop.query.get(id)
-    if prop:
+    if not prop:
+        return {'message': 'Prop not found'}, 404
+    dict = prop.to_dict()
+    if current_user.is_authenticated:
         setlists = Setlist.query.join(Setlist.props).filter(
             Prop.id == id, Setlist.user_id == current_user.id).all()
-        dict = prop.to_dict()
         dict['setlists'] = [setlist.to_dict() for setlist in setlists]
-        return jsonify(dict)
-    else:
-        return {'message': 'Prop not found'}, 404
+    return jsonify(dict)
 
 
 # CREATE A PROP

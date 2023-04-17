@@ -31,8 +31,8 @@
 
 .prophouse-show-add-prop-button {
   position: absolute;
-  top: 480px;
-  left: 230px;
+  bottom: 20px;
+  right: 20px;
   background-color: #f2f0e3;
   color: #20282b;
 }
@@ -95,4 +95,18 @@
 .prophouse-show-social a {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.prophouse-show-edit-buttons {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  column-gap: 10px;
+  bottom: 10px;
+  right: 10px;
+}
+
+.prophouse-show-edit-buttons button {
+  background-color: #f2f0e3;
+  color: #20282b;
 }

@@ -16,14 +16,14 @@ const SetlistForm = ({ setlist }) => {
       name
     };
     const action = setlist.id ? updateSetlist : createSetlist;
-    const data = await dispatch(action(payload));
-    history.push(`/setlists/${data.id}`);
+    await dispatch(action(payload));
+    history.push(`/setlists`);
   };
 
   return (
     <>
-      <h1>{setlist.id ? 'Edit' : 'Create'} Setlist</h1>
       <form onSubmit={handleSubmit}>
+        <h1>{setlist.id ? 'Edit' : 'Create'} Setlist</h1>
         <input
           type='text'
           placeholder='Name'

@@ -36,7 +36,10 @@ const SetlistIndex = () => {
               key={setlist.id}
               onClick={() => setCurrentSetlistIndex(index)}
             >
-              {setlist.name}
+              <div>{setlist.name}</div>
+              <Link to={`/setlists/${setlist.id}/edit`}>
+                <i class='fa-regular fa-pen-to-square'></i>
+              </Link>
             </div>
           ))}
         </div>

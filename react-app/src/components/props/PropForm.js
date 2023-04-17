@@ -71,7 +71,7 @@ const PropForm = ({ prop }) => {
 
   return (
     <div>
-      <div>
+      <form onSubmit={handleSubmit}>
         {prop.id ? (
           <>
             <h1>Edit prop</h1>
@@ -81,8 +81,6 @@ const PropForm = ({ prop }) => {
             <h1>Add a prop</h1>
           </>
         )}
-      </div>
-      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -90,14 +88,14 @@ const PropForm = ({ prop }) => {
         </ul>
         <input
           type='text'
-          placeholder='Name'
+          placeholder='name'
           required
           value={name}
           onChange={e => setName(e.target.value)}
         />
         <input
           type='text'
-          placeholder='Description'
+          placeholder='description'
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
@@ -153,7 +151,7 @@ const PropForm = ({ prop }) => {
         />
         <input
           type='text'
-          placeholder='Prop image url'
+          placeholder='image url'
           value={image}
           onChange={e => setImage(e.target.value)}
         />
@@ -171,22 +169,15 @@ const PropForm = ({ prop }) => {
             )
           )}
         </select>
-        AVAILABILITY Yes
-        <input
-          type='radio'
-          name='availability'
-          value={true}
-          checked={availability === true}
-          onChange={e => setAvailability(true)}
-        />
-        No
-        <input
-          type='radio'
-          name='availability'
-          value={false}
-          checked={availability === false}
-          onChange={e => setAvailability(false)}
-        />
+        <select onChange={e => setAvailability(e.target.value)}>
+          <option>Select Availability</option>
+          <option value={true} selected={prop.availability === true}>
+            Yes
+          </option>
+          <option value={false} selected={prop.availability === false}>
+            No
+          </option>
+        </select>
         <button>Save</button>
       </form>
     </div>

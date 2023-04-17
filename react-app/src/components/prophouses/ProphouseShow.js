@@ -40,24 +40,19 @@ const ProphouseShow = () => {
         <div className='prophouse-show-description'>
           {prophouse.description}
         </div>
+        {sessionUser && prophouse.id === sessionUser.prophouse_id && (
+          <div className='prophouse-show-edit-buttons'>
+            <Link to='/props/new'>
+              <button>Add Prop</button>
+            </Link>
+            <Link to={`/prophouses/${prophouse.id}/edit`}>
+              <button>Edit</button>
+            </Link>
+          </div>
+        )}
         <div>
-          {sessionUser && prophouse.id === sessionUser.prophouse_id && (
-            <div>
-              <button className='prophouse-show-edit-button'>
-                <Link to={`/prophouses/${prophouse.id}/edit`}>Edit</Link>
-              </button>
-            </div>
-          )}
-        </div>
-        <div>
-          {sessionUser && sessionUser.prophouse_id && (
-            <div>
-              <Link to='/props/new'>
-                <button className='prophouse-show-add-prop-button'>
-                  Add Prop
-                </button>
-              </Link>
-            </div>
+          {sessionUser && sessionUser.prophouse_id === prophouse.id && (
+            <div></div>
           )}
         </div>
       </div>

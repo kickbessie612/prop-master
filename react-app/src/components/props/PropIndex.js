@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProps } from '../../store/props';
 import { fetchCategories } from '../../store/categories';
-import { NavLink } from 'react-router-dom';
 import PropIndexItem from './PropIndexItem';
 import './PropIndex.css';
 import { filterByProp, sortByProp } from '../../utils';
 
 const PropIndex = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
   let props = useSelector(state => Object.values(state.props)).sort(
     sortByProp('id', 'desc')
   );

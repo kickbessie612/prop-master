@@ -18,22 +18,8 @@
   font-weight: 500;
 }
 
-.signup-form {
-  padding: 0px 200px 0px 200px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signup-form > input {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
 .signup-title {
   font-size: 24px;
-  margin-bottom: 30px;
 }
 
 .signup-button-container {
@@ -53,4 +39,9 @@
   background-position-x: center;
   background-repeat: no-repeat;
   background-image: url(https://hips.hearstapps.com/hmg-prod/images/9b897581-5909-490c-bc6c-70bba8dff638-jpg-1624646953.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*);
+}
+
+.signup-form {
+  margin-top: auto;
+  margin-bottom: auto;
 }

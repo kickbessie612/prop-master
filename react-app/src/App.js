@@ -11,7 +11,6 @@ import EditPropForm from './components/props/EditPropForm';
 import PropShow from './components/props/PropShow';
 import SetlistIndex from './components/setlists/SetlistIndex';
 import CreateSetlistForm from './components/setlists/CreateSetlistForm';
-import SetlistShow from './components/setlists/SetlistShow';
 import EditSetlistForm from './components/setlists/EditSetlistForm';
 import ProphouseShow from './components/prophouses/ProphouseShow';
 import EditProphouseForm from './components/prophouses/EditProphouseForm';
@@ -49,7 +48,7 @@ function App() {
             <Route path='/props/new'>
               <CreatePropForm />
             </Route>
-            <Route path='/props/:propId'>
+            <Route exact path='/props/:propId'>
               <PropShow />
             </Route>
             <Route exact path='/props'>
@@ -60,9 +59,6 @@ function App() {
             </Route>
             <Route path='/setlists/new'>
               <CreateSetlistForm />
-            </Route>
-            <Route path='/setlists/:setlistId'>
-              <SetlistShow />
             </Route>
             <Route exact path='/setlists'>
               <SetlistIndex />

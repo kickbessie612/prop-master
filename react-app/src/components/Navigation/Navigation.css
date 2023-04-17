@@ -2,6 +2,11 @@
   position: absolute;
   z-index: 1;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+  background-color: #f2f0e3;
+  border: 1px solid #20282b;
 }
 
 .profile-dropdown > *:not(:first-child) {
@@ -46,6 +51,7 @@
 .profile-button {
   color: #f2f0e3;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .navbar-holder a {

@@ -23,9 +23,15 @@
 .setlist-index-setlist {
   padding: 10px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
-.setlist-index-setlist:hover {
+.setlist-index-setlist > a {
+  margin-left: 20px;
+}
+
+.setlist-index-setlist > .setlist-index-setlist:hover {
   background-color: #d1d1d1;
 }
 

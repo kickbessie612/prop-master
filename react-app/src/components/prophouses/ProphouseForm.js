@@ -69,10 +69,8 @@ const ProphouseForm = ({ prophouse }) => {
 
   return (
     <div>
-      <div>
-        <div>Edit Prophouse</div>
-      </div>
       <form onSubmit={handleSubmit}>
+        <h1>Edit Prophouse</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>

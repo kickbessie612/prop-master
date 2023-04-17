@@ -8,7 +8,6 @@ import {
   setlistAddProp,
   setlistRemoveProp
 } from '../../store/setlists';
-import { filterByProp, sortByProp } from '../../utils';
 
 import './PropShow.css';
 
@@ -59,24 +58,35 @@ const PropShow = () => {
     dispatch(fetchProp(propId));
   };
 
-  if (!prop || !prop.setlists) {
+  if (!prop) {
     return null;
   }
+
   // only show setlists in the dropdown this prop hasn't been added to
-  setlists = setlists.filter(
-    setlist =>
-      !prop.setlists.some(currentSetlist => setlist.id === currentSetlist.id)
-  );
+  if (prop.setlists) {
+    setlists = setlists.filter(
+      setlist =>
+        !prop.setlists.some(currentSetlist => setlist.id === currentSetlist.id)
+    );
+  }
 
   return (
     <div>
       <div className='propshow-background'>
         <div className='propshow-main'>
-          <Link className='propshow-back-to-all' to={`/props`}>
-            <button className='propshow-button-back-to-all'>
-              Back to all props
-            </button>
-          </Link>
+          <div className='prop-show-edit-buttons'>
+            <Link to={`/props`}>
+              <button>Back to all props</button>
+            </Link>
+            {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
+              <>
+                <Link to={`/props/${prop.id}/edit`}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={handleDelete}>Delete</button>
+              </>
+            )}
+          </div>
 
           <div
             style={{
@@ -105,34 +115,36 @@ const PropShow = () => {
                 <>
                   <select onChange={e => handleSetlistSelect(e.target.value)}>
                     <option value=''>Select Setlist</option>
-                    {setlists.map(setlist => (
-                      <option key={setlist.id} value={setlist.id}>
-                        {setlist.name}
-                      </option>
-                    ))}
+                    {setlists &&
+                      setlists.map(setlist => (
+                        <option key={setlist.id} value={setlist.id}>
+                          {setlist.name}
+                        </option>
+                      ))}
                   </select>
 
                   <button className='propshow-button' onClick={handleAddButton}>
                     Add To Setlist
                   </button>
 
-                  {prop.setlists.map(setlist => (
-                    <>
-                      <div key={setlist.id}>
-                        In&nbsp;
-                        <Link to={`/setlists/${setlist.id}`}>
-                          {setlist.name}
-                        </Link>{' '}
-                        setlist
-                      </div>
-                      <button
-                        className='propshow-button'
-                        onClick={e => handleRemoveButton(setlist.id)}
-                      >
-                        Remove
-                      </button>
-                    </>
-                  ))}
+                  {prop.setlists &&
+                    prop.setlists.map(setlist => (
+                      <>
+                        <div key={setlist.id}>
+                          In&nbsp;
+                          <Link to={`/setlists/${setlist.id}`}>
+                            {setlist.name}
+                          </Link>{' '}
+                          setlist
+                        </div>
+                        <button
+                          className='propshow-button'
+                          onClick={e => handleRemoveButton(setlist.id)}
+                        >
+                          Remove
+                        </button>
+                      </>
+                    ))}
                 </>
               )}
             </div>
@@ -153,17 +165,6 @@ const PropShow = () => {
           <span className='propshow-prophouse-link'>{prop.prophouse.name}</span>
         </Link>
       </div>
-
-      {sessionUser && prop.prophouse_id === sessionUser.prophouse_id && (
-        <>
-          <div>
-            <button>
-              <Link to={`/props/${prop.id}/edit`}>Edit</Link>
-            </button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        </>
-      )}
     </div>
   );
 };
