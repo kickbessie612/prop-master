@@ -1,0 +1,64 @@
+.prop-list-container {
+  margin: 80px 160px 80px 160px;
+  display: flex;
+}
+
+.prop-index-categories {
+  line-height: 2;
+}
+
+.prop-index-category {
+  font-weight: 700;
+  text-indent: 5px;
+  width: 220px;
+}
+
+.prop-index-subcategory {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.prop-index-subcategory.active {
+  background-color: #d1d1d1;
+}
+
+.prop-index-subcategory:hover {
+  background-color: #d1d1d1;
+}
+
+.prop-list-main {
+  margin-left: 80px;
+  flex-grow: 1;
+}
+
+.prop-index-props {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.prop-index-item {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.prop-item-image {
+  transition: transform 0.5s ease-in-out;
+}
+
+.prop-item-image:hover {
+  transform: scale(1.1);
+}
+
+.prop-item-info {
+  margin-top: 10px;
+}
+
+.prop-item-name {
+  font-weight: 600;
+}
+
+.prop-list-search-bar {
+  width: 900px;
+  margin-left: 20px;
+}

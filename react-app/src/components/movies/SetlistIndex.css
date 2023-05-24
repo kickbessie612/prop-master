@@ -39,10 +39,6 @@
   background-color: #d1d1d1;
 }
 
-.setlist-index-delete-button {
-  margin-left: 5px;
-}
-
 .setlist-index-props {
   display: flex;
   flex-wrap: wrap;
